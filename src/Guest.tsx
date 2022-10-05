@@ -1,4 +1,4 @@
-import { IGuest } from './models'
+import { IGuest } from './interfaces/models'
 interface GuestProps {
   guest: IGuest
   removeGuest: (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => void
@@ -6,7 +6,7 @@ interface GuestProps {
 
 const Guest = ({ guest, removeGuest }: GuestProps) => {
   return (
-    <tr>
+    <tr className="border-bottom align-middle">
       <td>{guest.name}</td>
       <td>
         {guest.qualities.map((quality) => (

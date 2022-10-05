@@ -14,7 +14,7 @@ export const guestsCountByRussianGrammar = (guestsCount: number): string => {
   if (!firstDigit && !guestsCount) {
     return 'Никто не тусанет с тобой сегодня'
   } else if (firstDigit > 1 && firstDigit < 5 && secondDigit !== 1) {
-    return `${guestsCount} человека тусанет с тобой сегодня`
+    return `${guestsCount} человека тусанут с тобой сегодня`
   } else {
     return `${guestsCount} человек тусанет с тобой сегодня`
   }

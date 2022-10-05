@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Guest from './Guest'
 import api from './api/index'
-import { IGuest } from './models'
+import { IGuest } from './interfaces/models'
 import { guestsCountByRussianGrammar } from './core/utils/index'
 
 const App = () => {
@@ -9,23 +9,27 @@ const App = () => {
   const removeGuest = (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => {
     setGuests(guests.filter((guest) => guest._id !== filteredId))
   }
-
+  const setHeaderClassName = (): string => {
+    const headerBgClassName = guests.length === 0 ? 'bg-danger' : 'bg-primary'
+    const headerClasses = ['text-light text-center rounded p-1 float-left vw-30', headerBgClassName]
+    return headerClasses.join(' ')
+  }
   return (
     <>
-      <h2 className="text-light rounded bg-primary">
+      <h4 className={setHeaderClassName()}>
         <span>{guestsCountByRussianGrammar(guests.length)}</span>
-      </h2>
-      <table>
+      </h4>
+      <table className="table table-responsive">
         <thead>
           <tr>
-            <th>Имя</th>
-            <th>Качества</th>
-            <th>Профессия</th>
-            <th>Встретился, раз</th>
-            <th>Оценка</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Качества</th>
+            <th scope="col">Профессия</th>
+            <th scope="col">Встретился, раз</th>
+            <th scope="col">Оценка</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table-group-divider">
           {guests.map((guest) => {
             return <Guest key={guest._id} guest={guest} removeGuest={removeGuest} />
           })}
