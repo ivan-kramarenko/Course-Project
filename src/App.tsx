@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Guest from './Guest'
 import api from './api/index'
 import { IGuest } from './interfaces/models'
-import { guestsCountByRussianGrammar } from './core/utils/index'
+import HeaderGuests from './components/HeaderGuests'
 
 const App = () => {
   const [guests, setGuests] = useState<IGuest[]>(api.users.fetchAll())
@@ -15,16 +15,9 @@ const App = () => {
     newGuests[elemById].bookmark = !newGuests[elemById].bookmark
     setGuests(newGuests)
   }
-  const setHeaderClassName = (): string => {
-    const headerBgClassName = guests.length === 0 ? 'bg-danger' : 'bg-primary'
-    const headerClasses = ['text-light text-center rounded p-1 float-left vw-30', headerBgClassName]
-    return headerClasses.join(' ')
-  }
   return (
     <>
-      <h4 className={setHeaderClassName()}>
-        <span>{guestsCountByRussianGrammar(guests.length)}</span>
-      </h4>
+      <HeaderGuests countOfGuests={guests.length} />
       <table className="table table-responsive">
         <thead>
           <tr>
