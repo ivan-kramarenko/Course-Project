@@ -14,3 +14,9 @@ export interface IGuest {
   rate: number
   bookmark: boolean
 }
+
+export interface IQuality {
+  _id: string
+  name: string
+  color: string
+}
