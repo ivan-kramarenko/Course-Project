@@ -1,5 +1,6 @@
 import ButtonBookmark from './ButtonBookmark'
 import { IGuest } from '../interfaces/models'
+import Quality from './Quality'
 interface GuestProps {
   guest: IGuest
   removeGuest: (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => void
@@ -15,9 +16,7 @@ const Guest = ({ guest, removeGuest, switchBookmark }: GuestProps) => {
       <td>{guest.name}</td>
       <td>
         {guest.qualities.map((quality) => (
-          <span className={`m-1 badge bg-${quality.color}`} key={quality._id}>
-            {quality.name}
-          </span>
+          <Quality key={quality._id} quality={quality} />
         ))}
       </td>
       <td>
