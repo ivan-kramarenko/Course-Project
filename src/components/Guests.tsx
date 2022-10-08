@@ -1,19 +1,13 @@
-import { useState } from 'react'
-import api from '../api'
 import { IGuest } from '../interfaces/models'
 import Guest from './Guest'
 
-const Guests = () => {
-  const [guests, setGuests] = useState<IGuest[]>(api.users.fetchAll())
-  const removeGuest = (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => {
-    setGuests(guests.filter((guest) => guest._id !== filteredId))
-  }
-  const switchBookmark = (id: string) => {
-    const elemById = guests.findIndex((guest) => guest._id === id)
-    const newGuests = [...guests]
-    newGuests[elemById].bookmark = !newGuests[elemById].bookmark
-    setGuests(newGuests)
-  }
+interface GuestsProps {
+  guests: IGuest[]
+  removeGuest: (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => void
+  switchBookmark: (elemId: string) => void
+}
+
+const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
   return (
     <table className="table table-responsive">
       <thead>
