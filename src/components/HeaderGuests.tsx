@@ -7,7 +7,7 @@ interface HeaderGuestsProps {
 const HeaderGuests = ({ countOfGuests }: HeaderGuestsProps) => {
   const setHeaderClassName = (): string => {
     const headerBgClassName = countOfGuests === 0 ? 'bg-danger' : 'bg-primary'
-    const headerClasses = ['text-light text-center rounded p-1 float-left vw-30', headerBgClassName]
+    const headerClasses = ['text-light text-center rounded p-1 m-2 float-left vw-30', headerBgClassName]
     return headerClasses.join(' ')
   }
   return (
