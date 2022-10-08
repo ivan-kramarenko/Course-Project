@@ -13,7 +13,6 @@ const App = () => {
     const elemById = guests.findIndex((guest) => guest._id === id)
     const newGuests = [...guests]
     newGuests[elemById].bookmark = !newGuests[elemById].bookmark
-    console.log('Works!', newGuests)
     setGuests(newGuests)
   }
   const setHeaderClassName = (): string => {
