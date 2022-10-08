@@ -1,6 +1,11 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@babel/core': ^7.0.0-0
+  '@babel/plugin-syntax-flow': ^7.14.5
+  '@babel/plugin-transform-react-jsx': ^7.14.9
+  '@popperjs/core': ^2.11.6
+  '@testing-library/dom': 7.21.4
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/react': ^13.4.0
   '@testing-library/user-event': ^13.5.0
@@ -9,6 +14,7 @@ specifiers:
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
   bootstrap: 5.2.1
+  bootstrap-icons: ^1.9.1
   react: ^18.2.0
   react-dom: ^18.2.0
   react-scripts: 5.0.1
@@ -16,17 +22,23 @@ specifiers:
   web-vitals: ^2.1.4
 
 dependencies:
+  '@babel/core': 7.19.1
+  '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.19.1
+  '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.19.1
+  '@popperjs/core': 2.11.6
+  '@testing-library/dom': 7.21.4
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
-  '@testing-library/user-event': 13.5.0
+  '@testing-library/user-event': 13.5.0_zbypwrtvpjrvnfnw5wxfpjfsci
   '@types/jest': 27.5.2
   '@types/node': 16.11.62
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
-  bootstrap: 5.2.1
+  bootstrap: 5.2.1_@popperjs+core@2.11.6
+  bootstrap-icons: 1.9.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-scripts: 5.0.1_n4upredruleo7vrbwztywbpoxq
+  react-scripts: 5.0.1_bn5ss3l6ueifap6taer2byislu
   typescript: 4.8.3
   web-vitals: 2.1.4
 
@@ -1847,6 +1859,16 @@ packages:
       - supports-color
     dev: false
 
+  /@jest/types/25.5.0:
+    resolution: {integrity: sha512-OXD0RgQ86Tu3MazKo8bnrkDRaDXXMGUqd+kTtLtK1Zb7CRzQcaSRPPPV37SvYTdevXEBVxe0HXylEjs8ibkmCw==}
+    engines: {node: '>= 8.3'}
+    dependencies:
+      '@types/istanbul-lib-coverage': 2.0.4
+      '@types/istanbul-reports': 1.1.2
+      '@types/yargs': 15.0.14
+      chalk: 3.0.0
+    dev: false
+
   /@jest/types/27.5.1:
     resolution: {integrity: sha512-Cx46iJ9QpwQTjIdq5VJu2QTMMs3QlEjI0x1QbBP5W1+nMzyc2XmimiRR/CbX9TO0cPTeUlxWMOu8mslYsJ8DEw==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -1984,6 +2006,10 @@ packages:
       source-map: 0.7.4
       webpack: 5.74.0
       webpack-dev-server: 4.11.1_webpack@5.74.0
+    dev: false
+
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
   /@rollup/plugin-babel/5.3.1_r56fldxoyazzliugjcx2ns4pma:
@@ -2178,6 +2204,17 @@ packages:
       - supports-color
     dev: false
 
+  /@testing-library/dom/7.21.4:
+    resolution: {integrity: sha512-IXjKRTAH31nQ+mx6q3IPw85RTLul8VlWBm1rxURoxDt7JI0HPlAAfbtrKTdeq83XYCYO7HSHogyV+OsD+6FX0Q==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@babel/runtime': 7.19.0
+      '@types/aria-query': 4.2.2
+      aria-query: 4.2.2
+      dom-accessibility-api: 0.4.7
+      pretty-format: 25.5.0
+    dev: false
+
   /@testing-library/dom/8.18.1:
     resolution: {integrity: sha512-oEvsm2B/WtcHKE+IcEeeCqNU/ltFGaVyGbpcm4g/2ytuT49jrlH9x5qRKL/H3A6yfM4YAbSbC0ceT5+9CEXnLg==}
     engines: {node: '>=12'}
@@ -2221,13 +2258,14 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
-  /@testing-library/user-event/13.5.0:
+  /@testing-library/user-event/13.5.0_zbypwrtvpjrvnfnw5wxfpjfsci:
     resolution: {integrity: sha512-5Kwtbo3Y/NowpkbRuSepbyMFkZmHgD+vPzYB/RJ4oxt5Gj/avFFBYjhw27cqSVPVw/3a67NK1PbiIr9k4Gwmdg==}
     engines: {node: '>=10', npm: '>=6'}
     peerDependencies:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
       '@babel/runtime': 7.19.0
+      '@testing-library/dom': 7.21.4
     dev: false
 
   /@tootallnate/once/1.1.2:
@@ -2368,6 +2406,13 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.4
     dev: false
 
+  /@types/istanbul-reports/1.1.2:
+    resolution: {integrity: sha512-P/W9yOX/3oPZSpaYOCQzGqgCQRXn0FFO/V8bWrCQs+wLmvVVxk6CRBXALEvNs9OHIatlnlFokfhuDo2ug01ciw==}
+    dependencies:
+      '@types/istanbul-lib-coverage': 2.0.4
+      '@types/istanbul-lib-report': 3.0.0
+    dev: false
+
   /@types/istanbul-reports/3.0.1:
     resolution: {integrity: sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==}
     dependencies:
@@ -2490,6 +2535,12 @@ packages:
 
   /@types/yargs-parser/21.0.0:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
+    dev: false
+
+  /@types/yargs/15.0.14:
+    resolution: {integrity: sha512-yEJzHoxf6SyQGhBhIYGXQDSCkJjB6HohDShto7m8vaKg9Yp0Yn8+71J9eakh2bnPg6BfsH9PRMhiRTZnd4eXGQ==}
+    dependencies:
+      '@types/yargs-parser': 21.0.0
     dev: false
 
   /@types/yargs/16.0.4:
@@ -3300,10 +3351,16 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: false
 
-  /bootstrap/5.2.1:
+  /bootstrap-icons/1.9.1:
+    resolution: {integrity: sha512-d4ZkO30MIkAhQ2nNRJqKXJVEQorALGbLWTuRxyCTJF96lRIV6imcgMehWGJUiJMJhglN0o2tqLIeDnMdiQEE9g==}
+    dev: false
+
+  /bootstrap/5.2.1_@popperjs+core@2.11.6:
     resolution: {integrity: sha512-UQi3v2NpVPEi1n35dmRRzBJFlgvWHYwyem6yHhuT6afYF+sziEt46McRbT//kVXZ7b1YUYEVGdXEH74Nx3xzGA==}
     peerDependencies:
       '@popperjs/core': ^2.11.6
+    dependencies:
+      '@popperjs/core': 2.11.6
     dev: false
 
   /brace-expansion/1.1.11:
@@ -4116,6 +4173,10 @@ packages:
       esutils: 2.0.3
     dev: false
 
+  /dom-accessibility-api/0.4.7:
+    resolution: {integrity: sha512-5+GzhTpCQYHz4NjL8loYTDVBnXIjNLBadWQBKxXk+osFEplLt3EsSYBu2YZcdZ8QqrvCHgW6TSMGMbmgfhrn2g==}
+    dev: false
+
   /dom-accessibility-api/0.5.14:
     resolution: {integrity: sha512-NMt+m9zFMPZe0JcY9gN224Qvk6qLIdqex29clBvc/y75ZBX9YA9wNK3frsYvu2DI1xcCIwxwnX+TlsJ2DSOADg==}
     dev: false
@@ -4356,7 +4417,7 @@ packages:
       source-map: 0.6.1
     dev: false
 
-  /eslint-config-react-app/7.0.1_jqbnrec3mue2amczzwglfs3jf4:
+  /eslint-config-react-app/7.0.1_y47whrt73a6qqbfmqa5pt6qpfm:
     resolution: {integrity: sha512-K6rNzvkIeHaTd8m/QEh1Zko0KI7BACWkkneSs6s9cKZC/J27X3eZR6Upt1jkmZ/4FK+XUOPPxMEN7+lbUXfSlA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -4374,7 +4435,7 @@ packages:
       babel-preset-react-app: 10.0.1
       confusing-browser-globals: 1.0.11
       eslint: 8.24.0
-      eslint-plugin-flowtype: 8.0.3_eslint@8.24.0
+      eslint-plugin-flowtype: 8.0.3_66fb3kw2juo5bjwvcdc3xbe6ru
       eslint-plugin-import: 2.26.0_gofx6msuqd4luqedfouzks2s4u
       eslint-plugin-jest: 25.7.0_imj54lmr2xlw2xqdktnyelwztq
       eslint-plugin-jsx-a11y: 6.6.1_eslint@8.24.0
@@ -4429,7 +4490,7 @@ packages:
       - supports-color
     dev: false
 
-  /eslint-plugin-flowtype/8.0.3_eslint@8.24.0:
+  /eslint-plugin-flowtype/8.0.3_66fb3kw2juo5bjwvcdc3xbe6ru:
     resolution: {integrity: sha512-dX8l6qUL6O+fYPtpNRideCFSpmWOUVx5QcaGLVqe/vlDiBSe4vYljDWDETwnyFzpl7By/WVIu6rcrniCgH9BqQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -4437,6 +4498,8 @@ packages:
       '@babel/plugin-transform-react-jsx': ^7.14.9
       eslint: ^8.1.0
     dependencies:
+      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.19.1
+      '@babel/plugin-transform-react-jsx': 7.19.0_@babel+core@7.19.1
       eslint: 8.24.0
       lodash: 4.17.21
       string-natural-compare: 3.0.1
@@ -7861,6 +7924,16 @@ packages:
       renderkid: 3.0.0
     dev: false
 
+  /pretty-format/25.5.0:
+    resolution: {integrity: sha512-kbo/kq2LQ/A/is0PQwsEHM7Ca6//bGPPvU6UnsdDRSKTWxT/ru/xb88v4BJf6a69H+uTytOEsTusT9ksd/1iWQ==}
+    engines: {node: '>= 8.3'}
+    dependencies:
+      '@jest/types': 25.5.0
+      ansi-regex: 5.0.1
+      ansi-styles: 4.3.0
+      react-is: 16.13.1
+    dev: false
+
   /pretty-format/27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
@@ -8060,7 +8133,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react-scripts/5.0.1_n4upredruleo7vrbwztywbpoxq:
+  /react-scripts/5.0.1_bn5ss3l6ueifap6taer2byislu:
     resolution: {integrity: sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
@@ -8087,7 +8160,7 @@ packages:
       dotenv: 10.0.0
       dotenv-expand: 5.1.0
       eslint: 8.24.0
-      eslint-config-react-app: 7.0.1_jqbnrec3mue2amczzwglfs3jf4
+      eslint-config-react-app: 7.0.1_y47whrt73a6qqbfmqa5pt6qpfm
       eslint-webpack-plugin: 3.2.0_j6jdqc6yj4dakyrvwvnzxinrfq
       file-loader: 6.2.0_webpack@5.74.0
       fs-extra: 10.1.0
