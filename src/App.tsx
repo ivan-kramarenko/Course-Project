@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Guest from './Guest'
+import Guest from './components/Guest'
 import api from './api/index'
 import { IGuest } from './interfaces/models'
 import HeaderGuests from './components/HeaderGuests'

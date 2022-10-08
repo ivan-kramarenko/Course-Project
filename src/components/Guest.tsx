@@ -1,5 +1,5 @@
-import ButtonBookmark from './components/ButtonBookmark'
-import { IGuest } from './interfaces/models'
+import ButtonBookmark from './ButtonBookmark'
+import { IGuest } from '../interfaces/models'
 interface GuestProps {
   guest: IGuest
   removeGuest: (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => void
