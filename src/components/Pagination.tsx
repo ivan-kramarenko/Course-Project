@@ -20,7 +20,7 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }: Paginat
   }
   return (
     <>
-      <nav>
+      <nav className="d-flex justify-content-center">
         <ul className="pagination">
           {pages.map((page) => (
             <li key={`page_${page}`} className="page-item">

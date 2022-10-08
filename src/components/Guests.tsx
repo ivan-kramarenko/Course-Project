@@ -13,7 +13,6 @@ const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
   const pageSize = 4
   const [currentPage, setCurrentPage] = useState(1)
   const handlePageChange = (e: React.MouseEvent<HTMLSpanElement>, pageIndex: number) => {
-    console.log(pageIndex)
     setCurrentPage(pageIndex)
   }
   return (
