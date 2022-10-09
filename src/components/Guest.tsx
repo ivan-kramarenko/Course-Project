@@ -1,14 +1,24 @@
+import React, { ReactElement } from 'react'
 import ButtonBookmark from './ButtonBookmark'
 import { IGuest } from '../interfaces/models'
 import Quality from './Quality'
 interface GuestProps {
   guest: IGuest
-  removeGuest: (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => void
+  removeGuest: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    filteredId: string
+  ) => void
   switchBookmark: (elemId: string) => void
 }
 
-const Guest = ({ guest, removeGuest, switchBookmark }: GuestProps) => {
-  const handleBookmarkClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+const Guest = ({
+  guest,
+  removeGuest,
+  switchBookmark
+}: GuestProps): ReactElement => {
+  const handleBookmarkClick = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ): void => {
     switchBookmark(guest._id)
   }
   return (
@@ -29,10 +39,16 @@ const Guest = ({ guest, removeGuest, switchBookmark }: GuestProps) => {
         <span>{guest.rate}/5</span>
       </td>
       <td>
-        <ButtonBookmark bookmark={guest.bookmark} handleBookmarkClick={handleBookmarkClick} />
+        <ButtonBookmark
+          bookmark={guest.bookmark}
+          handleBookmarkClick={handleBookmarkClick}
+        />
       </td>
       <td>
-        <button onClick={(e) => removeGuest(e, guest._id)} className="btn btn-danger">
+        <button
+          onClick={(e) => removeGuest(e, guest._id)}
+          className="btn btn-danger"
+        >
           Delete
         </button>
       </td>

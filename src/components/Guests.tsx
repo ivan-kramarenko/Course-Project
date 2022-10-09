@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, ReactElement } from 'react'
 import { paginate } from '../core/utils'
 import { IGuest } from '../interfaces/models'
 import Guest from './Guest'
@@ -6,14 +6,24 @@ import Pagination from './Pagination'
 
 interface GuestsProps {
   guests: IGuest[]
-  removeGuest: (e: React.MouseEvent<HTMLButtonElement>, filteredId: string) => void
+  removeGuest: (
+    e: React.MouseEvent<HTMLButtonElement>,
+    filteredId: string
+  ) => void
   switchBookmark: (elemId: string) => void
 }
 
-const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
+const Guests = ({
+  guests,
+  removeGuest,
+  switchBookmark
+}: GuestsProps): ReactElement => {
   const pageSize = 4
   const [currentPage, setCurrentPage] = useState(1)
-  const handlePageChange = (e: React.MouseEvent<HTMLSpanElement>, pageIndex: number) => {
+  const handlePageChange = (
+    e: React.MouseEvent<HTMLSpanElement>,
+    pageIndex: number
+  ): void => {
     setCurrentPage(pageIndex)
   }
 
@@ -33,8 +43,15 @@ const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          {guestsCrop.map((guest) => {
-            return <Guest key={guest._id} guest={guest} removeGuest={removeGuest} switchBookmark={switchBookmark} />
+          {guestsCrop.map((guest: IGuest) => {
+            return (
+              <Guest
+                key={guest._id}
+                guest={guest}
+                removeGuest={removeGuest}
+                switchBookmark={switchBookmark}
+              />
+            )
           })}
         </tbody>
       </table>
