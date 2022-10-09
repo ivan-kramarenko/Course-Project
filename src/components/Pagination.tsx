@@ -24,9 +24,12 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }: Paginat
         <ul className="pagination">
           {pages.map((page) => (
             <li key={`page_${page}`} className="page-item">
-              <a className={setAnchorClassname(page)} onClick={(e) => onPageChange(e, page)}>
+              {
+                //button написан специально, чтобы не выбивать ошибку о href(ссылке)
+              }
+              <button className={setAnchorClassname(page)} onClick={(e) => onPageChange(e, page)}>
                 {page}
-              </a>
+              </button>
             </li>
           ))}
         </ul>

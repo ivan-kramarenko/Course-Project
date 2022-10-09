@@ -15,6 +15,14 @@ const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
   const handlePageChange = (e: React.MouseEvent<HTMLSpanElement>, pageIndex: number) => {
     setCurrentPage(pageIndex)
   }
+
+  const paginate = <T,>(items: Array<T>, pageNumber: number, pageSize: number) => {
+    const startIndex: number = (pageNumber - 1) * pageSize
+    return [...items].splice(startIndex, pageSize)
+  }
+
+  const guestsCrop = paginate(guests, currentPage, pageSize)
+
   return (
     <>
       <table className="table table-responsive">
@@ -29,7 +37,7 @@ const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          {guests.map((guest) => {
+          {guestsCrop.map((guest) => {
             return <Guest key={guest._id} guest={guest} removeGuest={removeGuest} switchBookmark={switchBookmark} />
           })}
         </tbody>
