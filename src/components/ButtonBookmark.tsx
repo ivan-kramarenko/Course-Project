@@ -1,9 +1,14 @@
+import React, { ReactElement } from 'react'
+
 interface ButtonBookmarkProps {
   bookmark: boolean
   handleBookmarkClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const ButtonBookmark = ({ bookmark, handleBookmarkClick }: ButtonBookmarkProps) => {
+const ButtonBookmark = ({
+  bookmark,
+  handleBookmarkClick
+}: ButtonBookmarkProps): ReactElement => {
   const setBtnClassName = (): string => {
     const btnBgClassName = !bookmark ? 'btn-secondary' : 'btn-primary'
     const btnClasses = ['btn', btnBgClassName]
@@ -13,7 +18,10 @@ const ButtonBookmark = ({ bookmark, handleBookmarkClick }: ButtonBookmarkProps) 
     return !bookmark ? 'False' : 'True'
   }
   return (
-    <button onClick={(e) => handleBookmarkClick(e)} className={setBtnClassName()}>
+    <button
+      onClick={(e) => handleBookmarkClick(e)}
+      className={setBtnClassName()}
+    >
       {setBtnText()}
     </button>
   )
