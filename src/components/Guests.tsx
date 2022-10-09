@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { paginate } from '../core/utils'
 import { IGuest } from '../interfaces/models'
 import Guest from './Guest'
 import Pagination from './Pagination'
@@ -14,11 +15,6 @@ const Guests = ({ guests, removeGuest, switchBookmark }: GuestsProps) => {
   const [currentPage, setCurrentPage] = useState(1)
   const handlePageChange = (e: React.MouseEvent<HTMLSpanElement>, pageIndex: number) => {
     setCurrentPage(pageIndex)
-  }
-
-  const paginate = <T,>(items: Array<T>, pageNumber: number, pageSize: number) => {
-    const startIndex: number = (pageNumber - 1) * pageSize
-    return [...items].splice(startIndex, pageSize)
   }
 
   const guestsCrop = paginate(guests, currentPage, pageSize)

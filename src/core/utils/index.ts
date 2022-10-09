@@ -19,3 +19,8 @@ export const guestsCountByRussianGrammar = (guestsCount: number): string => {
     return `${guestsCount} человек тусанет с тобой сегодня`
   }
 }
+
+export const paginate = <T>(items: Array<T>, pageNumber: number, pageSize: number) => {
+  const startIndex: number = (pageNumber - 1) * pageSize
+  return [...items].splice(startIndex, pageSize)
+}
