@@ -20,3 +20,8 @@ export interface IQuality {
   name: string
   color: string
 }
+
+export interface IProfession {
+  _id: string
+  name: string
+}

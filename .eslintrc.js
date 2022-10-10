@@ -12,5 +12,10 @@ module.exports = {
   },
   plugins: ['react'],
   rules: {
+    'space-before-function-paren': [
+      'error',
+      { anymous: 'always', named: 'never' }
+    ],
+    'no-floating-promises': 'off'
   }
 }
