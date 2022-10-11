@@ -5,12 +5,10 @@ interface QualityProps {
   quality: IQuality
 }
 
-const Quality = ({ quality }: QualityProps): ReactElement => {
-  return (
-    <span className={`m-1 badge bg-${quality.color}`} key={quality._id}>
-      {quality.name}
-    </span>
-  )
-}
+const Quality = ({ quality }: QualityProps): ReactElement => (
+  <span className={`m-1 badge bg-${quality.color}`} key={quality._id}>
+    {quality.name}
+  </span>
+)
 
 export default Quality

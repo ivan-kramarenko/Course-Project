@@ -1,8 +1,10 @@
-import React, { useState, ReactElement } from 'react'
+import React, { useState, ReactElement, useEffect } from 'react'
 import { paginate } from '../core/utils'
 import { IGuest } from '../interfaces/models'
+import GroupList from './GroupList'
 import Guest from './Guest'
 import Pagination from './Pagination'
+import api from '../api/index'
 
 interface GuestsProps {
   guests: IGuest[]
@@ -19,18 +21,29 @@ const Guests = ({
   switchBookmark
 }: GuestsProps): ReactElement => {
   const pageSize = 4
+
   const [currentPage, setCurrentPage] = useState(1)
+  const [professions, setProfessions] = useState([])
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    api.professions.fetchAll().then((data) => setProfessions(data))
+  }, [])
   const handlePageChange = (
     e: React.MouseEvent<HTMLSpanElement>,
     pageIndex: number
   ): void => {
     setCurrentPage(pageIndex)
   }
+  const handleProfessionSelect = (params: any): void => {
+    console.log(params)
+  }
 
   const guestsCrop = paginate(guests, currentPage, pageSize)
 
   return (
     <>
+      <GroupList items={professions} onItemSelect={handleProfessionSelect} />
       <table className="table table-responsive">
         <thead>
           <tr>
@@ -43,16 +56,14 @@ const Guests = ({
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          {guestsCrop.map((guest: IGuest) => {
-            return (
-              <Guest
-                key={guest._id}
-                guest={guest}
-                removeGuest={removeGuest}
-                switchBookmark={switchBookmark}
-              />
-            )
-          })}
+          {guestsCrop.map((guest: IGuest) => (
+            <Guest
+              key={guest._id}
+              guest={guest}
+              removeGuest={removeGuest}
+              switchBookmark={switchBookmark}
+            />
+          ))}
         </tbody>
       </table>
       <Pagination
