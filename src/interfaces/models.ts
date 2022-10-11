@@ -22,6 +22,6 @@ export interface IQuality {
 }
 
 export interface IProfession {
-  _id: string
+  [_id: string]: string
   name: string
 }

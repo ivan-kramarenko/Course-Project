@@ -43,7 +43,12 @@ const Guests = ({
 
   return (
     <>
-      <GroupList items={professions} onItemSelect={handleProfessionSelect} />
+      <GroupList
+        items={professions}
+        onItemSelect={handleProfessionSelect}
+        valueProperty="_id"
+        contentProperty="name"
+      />
       <table className="table table-responsive">
         <thead>
           <tr>
