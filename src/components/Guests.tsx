@@ -26,9 +26,8 @@ const Guests = ({
   const [professions, setProfessions] = useState([])
 
   useEffect(() => {
-    api.professions.fetchAll().then(
-      (data) => setProfessions(data)
-    )
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    api.professions.fetchAll().then((data) => setProfessions(data))
   }, [])
   const handlePageChange = (
     e: React.MouseEvent<HTMLSpanElement>,
@@ -57,16 +56,14 @@ const Guests = ({
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          {guestsCrop.map((guest: IGuest) => {
-            return (
-              <Guest
-                key={guest._id}
-                guest={guest}
-                removeGuest={removeGuest}
-                switchBookmark={switchBookmark}
-              />
-            )
-          })}
+          {guestsCrop.map((guest: IGuest) => (
+            <Guest
+              key={guest._id}
+              guest={guest}
+              removeGuest={removeGuest}
+              switchBookmark={switchBookmark}
+            />
+          ))}
         </tbody>
       </table>
       <Pagination

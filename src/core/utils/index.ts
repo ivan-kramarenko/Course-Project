@@ -8,23 +8,22 @@ export const getFirstAndSecondDigitOfNumber = (num: number): number[] => {
   )
   if (secondDigitOfNumber === 0) {
     return [firstDigitOfNumber, 0]
-  } else {
-    return [firstDigitOfNumber, secondDigitOfNumber]
   }
+  return [firstDigitOfNumber, secondDigitOfNumber]
 }
 
 export const guestsCountByRussianGrammar = (guestsCount: number): string => {
   const [firstDigit, secondDigit] = getFirstAndSecondDigitOfNumber(guestsCount)
   if (firstDigit === 0 && guestsCount === 0) {
     return 'Никто не тусанет с тобой сегодня'
-  } else if (firstDigit > 1 && firstDigit < 5 && secondDigit !== 1) {
-    return `${guestsCount} человека тусанут с тобой сегодня`
-  } else {
-    return `${guestsCount} человек тусанет с тобой сегодня`
   }
+  if (firstDigit > 1 && firstDigit < 5 && secondDigit !== 1) {
+    return `${guestsCount} человека тусанут с тобой сегодня`
+  }
+  return `${guestsCount} человек тусанет с тобой сегодня`
 }
 
-export function paginate<T> (
+export function paginate<T>(
   items: T[],
   pageNumber: number,
   pageSize: number
