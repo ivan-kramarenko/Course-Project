@@ -1,6 +1,6 @@
 import React, { useState, ReactElement, useEffect } from 'react'
 import { paginate } from '../core/utils'
-import { IGuest } from '../interfaces/models'
+import { IGuest, IProfession } from '../interfaces/models'
 import GroupList from './GroupList'
 import Guest from './Guest'
 import Pagination from './Pagination'
@@ -24,6 +24,7 @@ const Guests = ({
 
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState([])
+  const [selectedProf, setSelectedProf] = useState<[string, IProfession]>()
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -35,8 +36,8 @@ const Guests = ({
   ): void => {
     setCurrentPage(pageIndex)
   }
-  const handleProfessionSelect = (params: any): void => {
-    console.log(params)
+  const handleProfessionSelect = (item: [string, IProfession]): void => {
+    setSelectedProf(item)
   }
 
   const guestsCrop = paginate(guests, currentPage, pageSize)
@@ -48,6 +49,7 @@ const Guests = ({
         onItemSelect={handleProfessionSelect}
         valueProperty="_id"
         contentProperty="name"
+        selectedItem={selectedProf}
       />
       <table className="table table-responsive">
         <thead>

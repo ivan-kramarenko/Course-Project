@@ -3,24 +3,44 @@ import { IProfession } from '../interfaces/models'
 
 interface GroupListProps {
   items: IProfession[]
-  onItemSelect: (params: any) => void
+  onItemSelect: (item: [string, IProfession]) => void
   valueProperty: string
   contentProperty: string
+  selectedItem: [string, IProfession] | undefined
 }
 
 const GroupList = ({
   items,
   onItemSelect,
-  valueProperty = '_id',
-  contentProperty = 'name'
-}: GroupListProps): ReactElement => (
-  <ul className="list-group">
-    {Object.entries(items).map((item) => (
-      <li key={item[1][valueProperty]} className="list-group-item">
-        {item[1][contentProperty]}
-      </li>
-    ))}
-  </ul>
-)
+  valueProperty,
+  contentProperty,
+  selectedItem
+}: GroupListProps): ReactElement => {
+  const setListItemClassname = (item: [string, IProfession]): string => {
+    const listItemClasses = ['list-group-item']
+    if (selectedItem == null) {
+      return listItemClasses[0]
+    }
+    const isSelected = item[1]._id === selectedItem[1]._id ? 'active' : ''
+    listItemClasses.push(isSelected)
+    return listItemClasses.join(' ')
+  }
+  return (
+    <ul className="list-group m-3">
+      {Object.entries(items).map((item: [string, IProfession]) => (
+        <li key={item[1][valueProperty]} className={setListItemClassname(item)}>
+          <div
+            onClick={() => onItemSelect(item)}
+            role="button"
+            tabIndex={0}
+            aria-hidden="true"
+          >
+            {item[1][contentProperty]}
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
 export default GroupList
