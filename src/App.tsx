@@ -20,11 +20,20 @@ const App = (): ReactElement => {
     setGuests(newGuests)
   }
   return (
-    <Guests
-      guests={guests}
-      removeGuest={removeGuest}
-      switchBookmark={switchBookmark}
-    />
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {Object.keys(guests).length === 0 ? (
+        <div className="d-flex justify-content-center align-items-center vw-100 vh-100">
+          Loading...
+        </div>
+      ) : (
+        <Guests
+          guests={guests}
+          removeGuest={removeGuest}
+          switchBookmark={switchBookmark}
+        />
+      )}
+    </>
   )
 }
 
