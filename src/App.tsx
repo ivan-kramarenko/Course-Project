@@ -1,7 +1,6 @@
 import React, { useState, ReactElement } from 'react'
 import api from './api'
 import Guests from './components/Guests'
-import HeaderGuests from './components/HeaderGuests'
 import { IGuest } from './interfaces/models'
 
 const App = (): ReactElement => {
@@ -19,14 +18,11 @@ const App = (): ReactElement => {
     setGuests(newGuests)
   }
   return (
-    <>
-      <HeaderGuests countOfGuests={guests.length} />
-      <Guests
-        guests={guests}
-        removeGuest={removeGuest}
-        switchBookmark={switchBookmark}
-      />
-    </>
+    <Guests
+      guests={guests}
+      removeGuest={removeGuest}
+      switchBookmark={switchBookmark}
+    />
   )
 }
 
