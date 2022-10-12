@@ -4,10 +4,7 @@ import _ from 'lodash'
 interface PaginationProps {
   itemsCount: number
   pageSize: number
-  onPageChange: (
-    e: React.MouseEvent<HTMLSpanElement>,
-    pageIndex: number
-  ) => void
+  onPageChange: (pageIndex: number) => void
   currentPage: number
 }
 
@@ -38,7 +35,7 @@ const Pagination = ({
             <button
               type="button"
               className={setAnchorClassname(page)}
-              onClick={(e) => onPageChange(e, page)}
+              onClick={() => onPageChange(page)}
             >
               {page}
             </button>

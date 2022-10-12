@@ -5,10 +5,7 @@ import Quality from './Quality'
 
 interface GuestProps {
   guest: IGuest
-  removeGuest: (
-    e: React.MouseEvent<HTMLButtonElement>,
-    filteredId: string
-  ) => void
+  removeGuest: (filteredId: string) => void
   switchBookmark: (elemId: string) => void
 }
 
@@ -46,7 +43,7 @@ const Guest = ({
       <td>
         <button
           type="button"
-          onClick={(e) => removeGuest(e, guest._id)}
+          onClick={() => removeGuest(guest._id)}
           className="btn btn-danger"
         >
           Delete
