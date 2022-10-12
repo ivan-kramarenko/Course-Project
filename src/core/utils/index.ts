@@ -36,12 +36,10 @@ export function paginate<T>(
 
 export function filterGuestsByItem(
   guests: IGuest[],
-  filterProfession: [string, IProfession] | undefined
+  filterProfession: IProfession | undefined
 ): IGuest[] {
   if (filterProfession === undefined) {
     return guests
   }
-  return guests.filter(
-    (guest) => guest.profession._id === filterProfession[1]._id
-  )
+  return guests.filter((guest) => guest.profession._id === filterProfession._id)
 }

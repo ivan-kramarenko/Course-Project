@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react'
 import { IProfession } from '../interfaces/models'
 
 interface GroupListProps {
-  items: IProfession[]
-  onItemSelect: (item: [string, IProfession]) => void
+  items: object | IProfession[]
+  onItemSelect: (item: IProfession) => void
   valueProperty: string
   contentProperty: string
-  selectedItem: [string, IProfession] | undefined
+  selectedItem: IProfession | undefined
   clearFilter: () => void
 }
 
@@ -18,12 +18,12 @@ const GroupList = ({
   selectedItem,
   clearFilter
 }: GroupListProps): ReactElement => {
-  const setListItemClassname = (item: [string, IProfession]): string => {
+  const setListItemClassname = (item: IProfession): string => {
     const listItemClasses = ['list-group-item']
     if (selectedItem == null) {
       return listItemClasses[0]
     }
-    const isSelected = item[1]._id === selectedItem[1]._id ? 'active' : ''
+    const isSelected = item._id === selectedItem._id ? 'active' : ''
     listItemClasses.push(isSelected)
     return listItemClasses.join(' ')
   }
@@ -33,10 +33,10 @@ const GroupList = ({
         {Object.entries(items).map((item: [string, IProfession]) => (
           <li
             key={item[1][valueProperty]}
-            className={setListItemClassname(item)}
+            className={setListItemClassname(item[1])}
           >
             <div
-              onClick={() => onItemSelect(item)}
+              onClick={() => onItemSelect(item[1])}
               role="button"
               tabIndex={0}
               aria-hidden="true"

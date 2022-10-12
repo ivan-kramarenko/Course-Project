@@ -1,10 +1,15 @@
-import React, { useState, ReactElement } from 'react'
+import React, { useState, ReactElement, useEffect } from 'react'
 import api from './api'
 import Guests from './components/Guests'
 import { IGuest } from './interfaces/models'
 
 const App = (): ReactElement => {
-  const [guests, setGuests] = useState<IGuest[]>(api.users.fetchAll())
+  const [guests, setGuests] = useState<IGuest[]>([])
+  useEffect(() => {
+    api.users.fetchAll().then((data) => {
+      setGuests(data)
+    })
+  })
   const removeGuest = (
     e: React.MouseEvent<HTMLButtonElement>,
     filteredId: string
