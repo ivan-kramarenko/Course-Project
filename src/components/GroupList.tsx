@@ -46,13 +46,15 @@ const GroupList = ({
           </li>
         ))}
       </ul>
-      <button
-        type="button"
-        className="btn btn-secondary m-3"
-        onClick={() => clearFilter()}
-      >
-        Очистить
-      </button>
+      {Object.keys(items).length > 0 && (
+        <button
+          type="button"
+          className="btn btn-secondary m-3"
+          onClick={() => clearFilter()}
+        >
+          Очистить
+        </button>
+      )}
     </>
   )
 }

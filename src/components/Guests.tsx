@@ -53,7 +53,7 @@ const Guests = ({
   const count = filteredGuests.length
 
   return (
-    <div className="d-flex">
+    <div className="d-flex justify-content-center">
       <div className="d-flex flex-column flex-shrink-0 m-2">
         <GroupList
           items={professions}
