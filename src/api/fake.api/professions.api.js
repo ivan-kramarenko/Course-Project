@@ -1,4 +1,4 @@
-export const professions = {
+export const professionsObject = {
   doctor: { _id: '67rdca3eeb7f6fgeed471818', name: 'Доктор' },
   waiter: { _id: '67rdca3eeb7f6fgeed471820', name: 'Официант' },
   physics: { _id: '67rdca3eeb7f6fgeed471814', name: 'Физик' },
@@ -19,7 +19,7 @@ export const professionsArray = [
 export const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
-      resolve(professions)
+      resolve(professionsArray)
     }, 1000)
   })
 

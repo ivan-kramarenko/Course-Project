@@ -9,10 +9,7 @@ import HeaderGuests from './HeaderGuests'
 
 interface GuestsProps {
   guests: IGuest[]
-  removeGuest: (
-    e: React.MouseEvent<HTMLButtonElement>,
-    filteredId: string
-  ) => void
+  removeGuest: (filteredId: string) => void
   switchBookmark: (elemId: string) => void
 }
 
@@ -32,10 +29,8 @@ const Guests = ({
     api.professions.fetchAll().then((data) => {
       if (data instanceof Array) {
         const dataJson = { ...data }
-        console.log('Array - ', data)
         setProfessions(dataJson)
       }
-      console.log('Object - ', data)
       setProfessions(data)
     })
   }, [])
@@ -43,10 +38,7 @@ const Guests = ({
     setCurrentPage(1)
   }, [selectedProf])
 
-  const handlePageChange = (
-    e: React.MouseEvent<HTMLSpanElement>,
-    pageIndex: number
-  ): void => {
+  const handlePageChange = (pageIndex: number): void => {
     setCurrentPage(pageIndex)
   }
   const handleProfessionSelect = (item: IProfession): void => {

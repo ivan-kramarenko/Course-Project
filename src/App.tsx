@@ -10,10 +10,7 @@ const App = (): ReactElement => {
       setGuests(data)
     })
   })
-  const removeGuest = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    filteredId: string
-  ): void => {
+  const removeGuest = (filteredId: string): void => {
     setGuests(guests.filter((guest) => guest._id !== filteredId))
   }
   const switchBookmark = (id: string): void => {
