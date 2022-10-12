@@ -5,6 +5,7 @@ import GroupList from './GroupList'
 import Guest from './Guest'
 import Pagination from './Pagination'
 import api from '../api/index'
+import HeaderGuests from './HeaderGuests'
 
 interface GuestsProps {
   guests: IGuest[]
@@ -38,6 +39,7 @@ const Guests = ({
   }
   const handleProfessionSelect = (item: [string, IProfession]): void => {
     setSelectedProf(item)
+    setCurrentPage(1)
   }
   const clearFilter = (): void => {
     setSelectedProf(undefined)
@@ -45,9 +47,11 @@ const Guests = ({
 
   const filteredGuests = filterGuestsByItem(guests, selectedProf)
   const guestsCrop = paginate(filteredGuests, currentPage, pageSize)
+  const count = filteredGuests.length
 
   return (
     <>
+      <HeaderGuests countOfGuests={count} />
       <GroupList
         items={professions}
         onItemSelect={handleProfessionSelect}
@@ -56,30 +60,33 @@ const Guests = ({
         selectedItem={selectedProf}
         clearFilter={clearFilter}
       />
-      <table className="table table-responsive">
-        <thead>
-          <tr>
-            <th scope="col">Имя</th>
-            <th scope="col">Качества</th>
-            <th scope="col">Профессия</th>
-            <th scope="col">Встретился, раз</th>
-            <th scope="col">Оценка</th>
-            <th scope="col">Избранное</th>
-          </tr>
-        </thead>
-        <tbody className="table-group-divider">
-          {guestsCrop.map((guest: IGuest) => (
-            <Guest
-              key={guest._id}
-              guest={guest}
-              removeGuest={removeGuest}
-              switchBookmark={switchBookmark}
-            />
-          ))}
-        </tbody>
-      </table>
+      {count > 0 && (
+        <table className="table table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">Имя</th>
+              <th scope="col">Качества</th>
+              <th scope="col">Профессия</th>
+              <th scope="col">Встретился, раз</th>
+              <th scope="col">Оценка</th>
+              <th scope="col">Избранное</th>
+            </tr>
+          </thead>
+          <tbody className="table-group-divider">
+            {guestsCrop.map((guest: IGuest) => (
+              <Guest
+                key={guest._id}
+                guest={guest}
+                removeGuest={removeGuest}
+                switchBookmark={switchBookmark}
+              />
+            ))}
+          </tbody>
+        </table>
+      )}
+
       <Pagination
-        itemsCount={guests.length}
+        itemsCount={count}
         pageSize={pageSize}
         onPageChange={handlePageChange}
         currentPage={currentPage}
