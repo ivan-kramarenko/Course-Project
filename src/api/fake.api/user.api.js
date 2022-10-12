@@ -140,6 +140,9 @@ const users = [
   }
 ]
 // eslint-disable-next-line import/prefer-default-export
-export function fetchAll() {
-  return users
-}
+export const fetchAll = () =>
+  new Promise((resolve) => {
+    window.setTimeout(() => {
+      resolve(users)
+    }, 1000)
+  })

@@ -24,12 +24,20 @@ const Guests = ({
   const pageSize = 4
 
   const [currentPage, setCurrentPage] = useState(1)
-  const [professions, setProfessions] = useState([])
-  const [selectedProf, setSelectedProf] = useState<[string, IProfession]>()
+  const [professions, setProfessions] = useState<object | IProfession[]>([])
+  const [selectedProf, setSelectedProf] = useState<IProfession>()
 
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    api.professions.fetchAll().then((data) => setProfessions(data))
+    api.professions.fetchAll().then((data) => {
+      if (data instanceof Array) {
+        const dataJson = { ...data }
+        console.log('Array - ', data)
+        setProfessions(dataJson)
+      }
+      console.log('Object - ', data)
+      setProfessions(data)
+    })
   }, [])
   useEffect(() => {
     setCurrentPage(1)
@@ -41,7 +49,7 @@ const Guests = ({
   ): void => {
     setCurrentPage(pageIndex)
   }
-  const handleProfessionSelect = (item: [string, IProfession]): void => {
+  const handleProfessionSelect = (item: IProfession): void => {
     setSelectedProf(item)
   }
   const clearFilter = (): void => {
