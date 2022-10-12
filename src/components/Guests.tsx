@@ -25,8 +25,7 @@ const Guests = ({
   const [selectedProf, setSelectedProf] = useState<IProfession>()
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    api.professions.fetchAll().then((data) => {
+    void api.professions.fetchAll().then((data) => {
       if (data instanceof Array) {
         const dataJson = { ...data }
         setProfessions(dataJson)
