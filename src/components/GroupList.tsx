@@ -7,6 +7,7 @@ interface GroupListProps {
   valueProperty: string
   contentProperty: string
   selectedItem: [string, IProfession] | undefined
+  clearFilter: () => void
 }
 
 const GroupList = ({
@@ -14,7 +15,8 @@ const GroupList = ({
   onItemSelect,
   valueProperty,
   contentProperty,
-  selectedItem
+  selectedItem,
+  clearFilter
 }: GroupListProps): ReactElement => {
   const setListItemClassname = (item: [string, IProfession]): string => {
     const listItemClasses = ['list-group-item']
@@ -26,20 +28,32 @@ const GroupList = ({
     return listItemClasses.join(' ')
   }
   return (
-    <ul className="list-group m-3">
-      {Object.entries(items).map((item: [string, IProfession]) => (
-        <li key={item[1][valueProperty]} className={setListItemClassname(item)}>
-          <div
-            onClick={() => onItemSelect(item)}
-            role="button"
-            tabIndex={0}
-            aria-hidden="true"
+    <>
+      <ul className="list-group m-3">
+        {Object.entries(items).map((item: [string, IProfession]) => (
+          <li
+            key={item[1][valueProperty]}
+            className={setListItemClassname(item)}
           >
-            {item[1][contentProperty]}
-          </div>
-        </li>
-      ))}
-    </ul>
+            <div
+              onClick={() => onItemSelect(item)}
+              role="button"
+              tabIndex={0}
+              aria-hidden="true"
+            >
+              {item[1][contentProperty]}
+            </div>
+          </li>
+        ))}
+      </ul>
+      <button
+        type="button"
+        className="btn btn-secondary mx-3"
+        onClick={() => clearFilter()}
+      >
+        Очистить
+      </button>
+    </>
   )
 }
 

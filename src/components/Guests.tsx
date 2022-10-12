@@ -39,6 +39,9 @@ const Guests = ({
   const handleProfessionSelect = (item: [string, IProfession]): void => {
     setSelectedProf(item)
   }
+  const clearFilter = (): void => {
+    setSelectedProf(undefined)
+  }
 
   const filteredGuests = filterGuestsByItem(guests, selectedProf)
   const guestsCrop = paginate(filteredGuests, currentPage, pageSize)
@@ -51,6 +54,7 @@ const Guests = ({
         valueProperty="_id"
         contentProperty="name"
         selectedItem={selectedProf}
+        clearFilter={clearFilter}
       />
       <table className="table table-responsive">
         <thead>
