@@ -1,3 +1,5 @@
+import { IGuest, IProfession } from '../../interfaces/models'
+
 export const getFirstAndSecondDigitOfNumber = (num: number): number[] => {
   const splittedNumberArray = num.toString().split('')
   const firstDigitOfNumber = Number(
@@ -30,4 +32,16 @@ export function paginate<T>(
 ): T[] {
   const startIndex: number = (pageNumber - 1) * pageSize
   return [...items].splice(startIndex, pageSize)
+}
+
+export function filterGuestsByItem(
+  guests: IGuest[],
+  filterProfession: [string, IProfession] | undefined
+): IGuest[] {
+  if (filterProfession === undefined) {
+    return guests
+  }
+  return guests.filter(
+    (guest) => guest.profession._id === filterProfession[1]._id
+  )
 }

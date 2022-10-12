@@ -1,5 +1,5 @@
 import React, { useState, ReactElement, useEffect } from 'react'
-import { paginate } from '../core/utils'
+import { filterGuestsByItem, paginate } from '../core/utils'
 import { IGuest, IProfession } from '../interfaces/models'
 import GroupList from './GroupList'
 import Guest from './Guest'
@@ -40,7 +40,8 @@ const Guests = ({
     setSelectedProf(item)
   }
 
-  const guestsCrop = paginate(guests, currentPage, pageSize)
+  const filteredGuests = filterGuestsByItem(guests, selectedProf)
+  const guestsCrop = paginate(filteredGuests, currentPage, pageSize)
 
   return (
     <>
