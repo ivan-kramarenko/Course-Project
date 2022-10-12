@@ -29,7 +29,7 @@ const GroupList = ({
   }
   return (
     <>
-      <ul className="list-group m-3">
+      <ul className="list-group">
         {Object.entries(items).map((item: [string, IProfession]) => (
           <li
             key={item[1][valueProperty]}
@@ -48,7 +48,7 @@ const GroupList = ({
       </ul>
       <button
         type="button"
-        className="btn btn-secondary mx-3"
+        className="btn btn-secondary m-3"
         onClick={() => clearFilter()}
       >
         Очистить
