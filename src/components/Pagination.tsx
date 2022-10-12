@@ -4,10 +4,7 @@ import _ from 'lodash'
 interface PaginationProps {
   itemsCount: number
   pageSize: number
-  onPageChange: (
-    e: React.MouseEvent<HTMLSpanElement>,
-    pageIndex: number
-  ) => void
+  onPageChange: (pageIndex: number) => void
   currentPage: number
 }
 
@@ -28,25 +25,24 @@ const Pagination = ({
     return anchorClasses.join(' ')
   }
   return (
-    <>
-      <nav className="d-flex justify-content-center">
-        <ul className="pagination">
-          {pages.map((page) => (
-            <li key={`page_${page}`} className="page-item">
-              {
-                // button написан специально, чтобы не выбивать ошибку о href(ссылке)
-              }
-              <button
-                className={setAnchorClassname(page)}
-                onClick={(e) => onPageChange(e, page)}
-              >
-                {page}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </>
+    <nav className="d-flex justify-content-center">
+      <ul className="pagination">
+        {pages.map((page) => (
+          <li key={`page_${page}`} className="page-item">
+            {
+              // button написан специально, чтобы не выбивать ошибку о href(ссылке)
+            }
+            <button
+              type="button"
+              className={setAnchorClassname(page)}
+              onClick={() => onPageChange(page)}
+            >
+              {page}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </nav>
   )
 }
 

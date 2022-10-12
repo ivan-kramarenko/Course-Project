@@ -1,11 +1,5 @@
-const professions = {
-  doctor: { _id: '67rdca3eeb7f6fgeed471818', name: 'Доктор' },
-  waiter: { _id: '67rdca3eeb7f6fgeed471820', name: 'Официант' },
-  physics: { _id: '67rdca3eeb7f6fgeed471814', name: 'Физик' },
-  engineer: { _id: '67rdca3eeb7f6fgeed471822', name: 'Инженер' },
-  actor: { _id: '67rdca3eeb7f6fgeed471824', name: 'Актер' },
-  cook: { _id: '67rdca3eeb7f6fgeed471829', name: 'Повар' }
-}
+import { professionsObject as professions } from './professions.api'
+
 const qualities = {
   tedious: {
     _id: '67rdca3eeb7f6fgeed471198',
@@ -145,6 +139,10 @@ const users = [
     bookmark: false
   }
 ]
-export function fetchAll () {
-  return users
-}
+// eslint-disable-next-line import/prefer-default-export
+export const fetchAll = () =>
+  new Promise((resolve) => {
+    window.setTimeout(() => {
+      resolve(users)
+    }, 1000)
+  })

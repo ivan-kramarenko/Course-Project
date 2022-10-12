@@ -1,15 +1,16 @@
-import React, { useState, ReactElement } from 'react'
+import React, { useState, ReactElement, useEffect } from 'react'
 import api from './api'
 import Guests from './components/Guests'
-import HeaderGuests from './components/HeaderGuests'
 import { IGuest } from './interfaces/models'
 
 const App = (): ReactElement => {
-  const [guests, setGuests] = useState<IGuest[]>(api.users.fetchAll())
-  const removeGuest = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    filteredId: string
-  ): void => {
+  const [guests, setGuests] = useState<IGuest[]>([])
+  useEffect(() => {
+    api.users.fetchAll().then((data) => {
+      setGuests(data)
+    })
+  })
+  const removeGuest = (filteredId: string): void => {
     setGuests(guests.filter((guest) => guest._id !== filteredId))
   }
   const switchBookmark = (id: string): void => {
@@ -19,13 +20,19 @@ const App = (): ReactElement => {
     setGuests(newGuests)
   }
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      <HeaderGuests countOfGuests={guests.length} />
-      <Guests
-        guests={guests}
-        removeGuest={removeGuest}
-        switchBookmark={switchBookmark}
-      />
+      {Object.keys(guests).length === 0 ? (
+        <div className="d-flex justify-content-center align-items-center vw-100 vh-100">
+          Loading...
+        </div>
+      ) : (
+        <Guests
+          guests={guests}
+          removeGuest={removeGuest}
+          switchBookmark={switchBookmark}
+        />
+      )}
     </>
   )
 }
