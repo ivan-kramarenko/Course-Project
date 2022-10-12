@@ -6,7 +6,7 @@ import { IGuest } from './interfaces/models'
 const App = (): ReactElement => {
   const [guests, setGuests] = useState<IGuest[]>([])
   useEffect(() => {
-    api.users.fetchAll().then((data) => {
+    void api.users.fetchAll().then((data) => {
       setGuests(data)
     })
   })
