@@ -6,22 +6,34 @@ interface GuestsTableProps {
   guests: IGuest[]
   removeGuest: (filteredId: string) => void
   switchBookmark: (elemId: string) => void
+  onSort: (value: string) => void
 }
 
 const GuestsTable = ({
   guests,
   removeGuest,
-  switchBookmark
+  switchBookmark,
+  onSort
 }: GuestsTableProps): ReactElement => (
   <table className="table table-responsive">
     <thead>
       <tr>
-        <th scope="col">Имя</th>
+        <th onClick={() => onSort('name')} scope="col">
+          Имя
+        </th>
         <th scope="col">Качества</th>
-        <th scope="col">Профессия</th>
-        <th scope="col">Встретился, раз</th>
-        <th scope="col">Оценка</th>
-        <th scope="col">Избранное</th>
+        <th onClick={() => onSort('profession.name')} scope="col">
+          Профессия
+        </th>
+        <th onClick={() => onSort('completedMeetings')} scope="col">
+          Встретился, раз
+        </th>
+        <th onClick={() => onSort('rate')} scope="col">
+          Оценка
+        </th>
+        <th onClick={() => onSort('bookmark')} scope="col">
+          Избранное
+        </th>
       </tr>
     </thead>
     <tbody className="table-group-divider">

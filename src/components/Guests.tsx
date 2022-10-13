@@ -46,6 +46,9 @@ const Guests = ({
   const clearFilter = (): void => {
     setSelectedProf(undefined)
   }
+  const handleSort = (value: string): void => {
+    console.log(value)
+  }
 
   const filteredGuests = filterGuestsByItem(guests, selectedProf)
   const guestsCrop = paginate(filteredGuests, currentPage, pageSize)
@@ -71,6 +74,7 @@ const Guests = ({
             guests={guestsCrop}
             removeGuest={removeGuest}
             switchBookmark={switchBookmark}
+            onSort={handleSort}
           />
         )}
         <Pagination
