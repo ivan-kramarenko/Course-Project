@@ -2,10 +2,10 @@ import React, { useState, ReactElement, useEffect } from 'react'
 import { filterGuestsByItem, paginate } from '../core/utils'
 import { IGuest, IProfession } from '../interfaces/models'
 import GroupList from './GroupList'
-import Guest from './Guest'
 import Pagination from './Pagination'
 import api from '../api/index'
 import HeaderGuests from './HeaderGuests'
+import GuestsTable from './GuestsTable'
 
 interface GuestsProps {
   guests: IGuest[]
@@ -67,28 +67,11 @@ const Guests = ({
       <div className="d-flex flex-column">
         <HeaderGuests countOfGuests={count} />
         {count > 0 && (
-          <table className="table table-responsive">
-            <thead>
-              <tr>
-                <th scope="col">Имя</th>
-                <th scope="col">Качества</th>
-                <th scope="col">Профессия</th>
-                <th scope="col">Встретился, раз</th>
-                <th scope="col">Оценка</th>
-                <th scope="col">Избранное</th>
-              </tr>
-            </thead>
-            <tbody className="table-group-divider">
-              {guestsCrop.map((guest: IGuest) => (
-                <Guest
-                  key={guest._id}
-                  guest={guest}
-                  removeGuest={removeGuest}
-                  switchBookmark={switchBookmark}
-                />
-              ))}
-            </tbody>
-          </table>
+          <GuestsTable
+            guests={guestsCrop}
+            removeGuest={removeGuest}
+            switchBookmark={switchBookmark}
+          />
         )}
         <Pagination
           itemsCount={count}
