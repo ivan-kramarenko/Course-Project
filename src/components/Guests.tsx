@@ -1,4 +1,5 @@
 import React, { useState, ReactElement, useEffect } from 'react'
+import _ from 'lodash'
 import { filterGuestsByItem, paginate } from '../core/utils'
 import { IGuest, IProfession } from '../interfaces/models'
 import GroupList from './GroupList'
@@ -23,6 +24,10 @@ const Guests = ({
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState<object | IProfession[]>([])
   const [selectedProf, setSelectedProf] = useState<IProfession>()
+  const [sortValue, setSortValue] = useState({
+    iter: 'name',
+    order: 'asc'
+  })
 
   useEffect(() => {
     void api.professions.fetchAll().then((data) => {
@@ -47,11 +52,21 @@ const Guests = ({
     setSelectedProf(undefined)
   }
   const handleSort = (value: string): void => {
-    console.log(value)
+    if (sortValue.order === 'asc') {
+      setSortValue({ iter: value, order: 'desc' })
+    } else {
+      setSortValue({ iter: value, order: 'asc' })
+    }
   }
 
   const filteredGuests = filterGuestsByItem(guests, selectedProf)
-  const guestsCrop = paginate(filteredGuests, currentPage, pageSize)
+  const sortedGuests = _.orderBy(
+    filteredGuests,
+    [sortValue.iter],
+    // @ts-expect-error Unreachable error code
+    [sortValue.order]
+  )
+  const guestsCrop = paginate(sortedGuests, currentPage, pageSize)
   const count = filteredGuests.length
 
   return (
