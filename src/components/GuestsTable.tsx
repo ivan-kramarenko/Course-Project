@@ -1,40 +1,51 @@
 import React, { ReactElement } from 'react'
-import { IGuest } from '../interfaces/models'
+import { IGuest, ISortedValue } from '../interfaces/models'
 import Guest from './Guest'
+import TableHeader from './TableHeader'
 
 interface GuestsTableProps {
   guests: IGuest[]
   removeGuest: (filteredId: string) => void
   switchBookmark: (elemId: string) => void
+  onSort: (value: ISortedValue) => void
+  selectedSort: ISortedValue
 }
 
 const GuestsTable = ({
   guests,
   removeGuest,
-  switchBookmark
-}: GuestsTableProps): ReactElement => (
-  <table className="table table-responsive">
-    <thead>
-      <tr>
-        <th scope="col">Имя</th>
-        <th scope="col">Качества</th>
-        <th scope="col">Профессия</th>
-        <th scope="col">Встретился, раз</th>
-        <th scope="col">Оценка</th>
-        <th scope="col">Избранное</th>
-      </tr>
-    </thead>
-    <tbody className="table-group-divider">
-      {guests.map((guest: IGuest) => (
-        <Guest
-          key={guest._id}
-          guest={guest}
-          removeGuest={removeGuest}
-          switchBookmark={switchBookmark}
-        />
-      ))}
-    </tbody>
-  </table>
-)
+  switchBookmark,
+  onSort,
+  selectedSort
+}: GuestsTableProps): ReactElement => {
+  const columns = {
+    name: { iter: 'name', name: 'Имя' },
+    qualities: { name: 'Качества' },
+    profession: { iter: 'profession.name', name: 'Профессия' },
+    completedMeetings: { iter: 'completedMeetings', name: 'Встретился, раз' },
+    rate: { iter: 'rate', name: 'Оценка' },
+    bookmark: { iter: 'bookmark', name: 'Избранное' },
+    delete: {}
+  }
+  return (
+    <table className="table table-responsive">
+      <TableHeader
+        onSort={onSort}
+        selectedSort={selectedSort}
+        columns={columns}
+      />
+      <tbody className="table-group-divider">
+        {guests.map((guest: IGuest) => (
+          <Guest
+            key={guest._id}
+            guest={guest}
+            removeGuest={removeGuest}
+            switchBookmark={switchBookmark}
+          />
+        ))}
+      </tbody>
+    </table>
+  )
+}
 
 export default GuestsTable

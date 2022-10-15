@@ -1,6 +1,7 @@
 import React, { useState, ReactElement, useEffect } from 'react'
+import _ from 'lodash'
 import { filterGuestsByItem, paginate } from '../core/utils'
-import { IGuest, IProfession } from '../interfaces/models'
+import { IGuest, IProfession, ISortedValue } from '../interfaces/models'
 import GroupList from './GroupList'
 import Pagination from './Pagination'
 import api from '../api/index'
@@ -23,6 +24,10 @@ const Guests = ({
   const [currentPage, setCurrentPage] = useState(1)
   const [professions, setProfessions] = useState<object | IProfession[]>([])
   const [selectedProf, setSelectedProf] = useState<IProfession>()
+  const [sortValue, setSortValue] = useState<ISortedValue>({
+    iter: 'name',
+    order: 'asc'
+  })
 
   useEffect(() => {
     void api.professions.fetchAll().then((data) => {
@@ -46,9 +51,18 @@ const Guests = ({
   const clearFilter = (): void => {
     setSelectedProf(undefined)
   }
+  const handleSort = (value: ISortedValue): void => {
+    setSortValue({ iter: value.iter, order: value.order })
+  }
 
   const filteredGuests = filterGuestsByItem(guests, selectedProf)
-  const guestsCrop = paginate(filteredGuests, currentPage, pageSize)
+  const sortedGuests = _.orderBy(
+    filteredGuests,
+    [sortValue.iter],
+    // @ts-expect-error Unreachable error code
+    [sortValue.order]
+  )
+  const guestsCrop = paginate(sortedGuests, currentPage, pageSize)
   const count = filteredGuests.length
 
   return (
@@ -71,6 +85,8 @@ const Guests = ({
             guests={guestsCrop}
             removeGuest={removeGuest}
             switchBookmark={switchBookmark}
+            onSort={handleSort}
+            selectedSort={sortValue}
           />
         )}
         <Pagination
