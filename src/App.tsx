@@ -9,7 +9,7 @@ const App = (): ReactElement => {
     void api.users.fetchAll().then((data) => {
       setGuests(data)
     })
-  })
+  }, [])
   const removeGuest = (filteredId: string): void => {
     setGuests(guests.filter((guest) => guest._id !== filteredId))
   }
