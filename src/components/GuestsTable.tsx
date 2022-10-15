@@ -1,13 +1,14 @@
 import React, { ReactElement } from 'react'
 import { IGuest, ISortedValue } from '../interfaces/models'
 import Guest from './Guest'
+import TableHeader from './TableHeader'
 
 interface GuestsTableProps {
   guests: IGuest[]
   removeGuest: (filteredId: string) => void
   switchBookmark: (elemId: string) => void
   onSort: (value: ISortedValue) => void
-  currentSort: ISortedValue
+  selectedSort: ISortedValue
 }
 
 const GuestsTable = ({
@@ -15,37 +16,24 @@ const GuestsTable = ({
   removeGuest,
   switchBookmark,
   onSort,
-  currentSort
+  selectedSort
 }: GuestsTableProps): ReactElement => {
-  const handleSort = (value: string): void => {
-    if (currentSort.order === 'asc') {
-      onSort({ iter: value, order: 'desc' })
-    } else {
-      onSort({ iter: value, order: 'asc' })
-    }
+  const columns = {
+    name: { iter: 'name', name: 'Имя' },
+    qualities: { name: 'Качества' },
+    profession: { iter: 'profession.name', name: 'Профессия' },
+    completedMeetings: { iter: 'completedMeetings', name: 'Встретился, раз' },
+    rate: { iter: 'rate', name: 'Оценка' },
+    bookmark: { iter: 'bookmark', name: 'Избранное' },
+    delete: {}
   }
   return (
     <table className="table table-responsive">
-      <thead>
-        <tr>
-          <th onClick={() => handleSort('name')} scope="col">
-            Имя
-          </th>
-          <th scope="col">Качества</th>
-          <th onClick={() => handleSort('profession.name')} scope="col">
-            Профессия
-          </th>
-          <th onClick={() => handleSort('completedMeetings')} scope="col">
-            Встретился, раз
-          </th>
-          <th onClick={() => handleSort('rate')} scope="col">
-            Оценка
-          </th>
-          <th onClick={() => handleSort('bookmark')} scope="col">
-            Избранное
-          </th>
-        </tr>
-      </thead>
+      <TableHeader
+        onSort={onSort}
+        selectedSort={selectedSort}
+        columns={columns}
+      />
       <tbody className="table-group-divider">
         {guests.map((guest: IGuest) => (
           <Guest

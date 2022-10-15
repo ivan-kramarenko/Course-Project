@@ -86,7 +86,7 @@ const Guests = ({
             removeGuest={removeGuest}
             switchBookmark={switchBookmark}
             onSort={handleSort}
-            currentSort={sortValue}
+            selectedSort={sortValue}
           />
         )}
         <Pagination
