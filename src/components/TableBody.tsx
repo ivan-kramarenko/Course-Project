@@ -12,6 +12,9 @@ const TableBody = ({ data, columns }: TableBodyProps): ReactElement => {
     item: IGuest,
     column: string
   ): ReactElement | string | undefined => {
+    if (column === 'rate') {
+      return `${item[column]} / 5`
+    }
     if (columns[column].component != null) {
       const { component } = columns[column]
       if (typeof component === 'function') {
