@@ -1,13 +1,16 @@
 import React, { ReactElement } from 'react'
+import { IGuest } from '../interfaces/models'
 
 interface ButtonBookmarkProps {
   bookmark: boolean
-  handleBookmarkClick: () => void
+  guest: IGuest
+  switchBookmark: (id: string) => void
 }
 
 const ButtonBookmark = ({
   bookmark,
-  handleBookmarkClick
+  guest,
+  switchBookmark
 }: ButtonBookmarkProps): ReactElement => {
   const setBtnClassName = (): string => {
     const btnBgClassName = !bookmark ? 'btn-secondary' : 'btn-primary'
@@ -18,8 +21,8 @@ const ButtonBookmark = ({
   return (
     <button
       type="button"
-      onClick={() => handleBookmarkClick()}
       className={setBtnClassName()}
+      onClick={() => switchBookmark(guest._id)}
     >
       {setBtnText()}
     </button>

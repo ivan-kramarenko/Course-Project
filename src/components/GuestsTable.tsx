@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { IGuest, ISortedValue } from '../interfaces/models'
+import ButtonBookmark from './ButtonBookmark'
 import TableBody from './TableBody'
 import TableHeader from './TableHeader'
 
@@ -24,8 +25,19 @@ const GuestsTable = ({
     profession: { path: 'profession.name', name: 'Профессия' },
     completedMeetings: { path: 'completedMeetings', name: 'Встретился, раз' },
     rate: { path: 'rate', name: 'Оценка' },
-    bookmark: { path: 'bookmark', name: 'Избранное' },
-    delete: {}
+    bookmark: {
+      path: 'bookmark',
+      name: 'Избранное',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      component: (guest: IGuest) => (
+        <ButtonBookmark
+          bookmark={guest.bookmark}
+          switchBookmark={switchBookmark}
+          guest={guest}
+        />
+      )
+    },
+    delete: { component: 'delete' }
   }
   return (
     <table className="table table-responsive">

@@ -15,21 +15,36 @@ const TableBody = ({
   switchBookmark, // eslint-disable-line
   data,
   columns
-}: TableBodyProps): ReactElement => (
-  <tbody className="table-group-divider">
-    {data.map((item: IGuest) => (
-      // <Guest
-      //   key={item._id}
-      //   guest={item}
-      //   removeGuest={removeGuest}
-      //   switchBookmark={switchBookmark}
-      // />
-      <tr key={item._id} className="border-bottom align-middle">
-        {Object.keys(columns).map((column) => (
-          <td key={column}>{_.get(item, columns[column].path)}</td>
-        ))}
-      </tr>
-    ))}
-  </tbody>
-)
+}: TableBodyProps): ReactElement => {
+  const renderContent = (
+    item: IGuest,
+    column: string
+  ): ReactElement | string | undefined => {
+    if (columns[column].component != null) {
+      const { component } = columns[column]
+      if (typeof component === 'function') {
+        return component(item)
+      }
+      return component
+    }
+    return _.get(item, columns[column].path)
+  }
+  return (
+    <tbody className="table-group-divider">
+      {data.map((item: IGuest) => (
+        // <Guest
+        //   key={item._id}
+        //   guest={item}
+        //   removeGuest={removeGuest}
+        //   switchBookmark={switchBookmark}
+        // />
+        <tr key={item._id} className="border-bottom align-middle">
+          {Object.keys(columns).map((column) => (
+            <td key={column}>{renderContent(item, column)}</td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  )
+}
 export default TableBody
