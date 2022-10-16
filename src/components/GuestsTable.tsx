@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { IGuest, ISortedValue } from '../interfaces/models'
 import ButtonBookmark from './ButtonBookmark'
+import ButtonDelete from './ButtonDelete'
 import TableBody from './TableBody'
 import TableHeader from './TableHeader'
 
@@ -37,7 +38,12 @@ const GuestsTable = ({
         />
       )
     },
-    delete: { component: 'delete' }
+    delete: {
+      // eslint-disable-next-line react/no-unstable-nested-components
+      component: (guest: IGuest) => (
+        <ButtonDelete guest={guest} removeGuest={removeGuest} />
+      )
+    }
   }
   return (
     <table className="table table-responsive">
@@ -46,12 +52,7 @@ const GuestsTable = ({
         selectedSort={selectedSort}
         columns={columns}
       />
-      <TableBody
-        data={guests}
-        removeGuest={removeGuest}
-        switchBookmark={switchBookmark}
-        columns={columns}
-      />
+      <TableBody data={guests} columns={columns} />
     </table>
   )
 }
