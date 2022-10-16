@@ -14,9 +14,9 @@ const TableHeader = ({
 }: TableHeaderProps): ReactElement => {
   const handleSort = (value: string): void => {
     if (selectedSort.order === 'asc') {
-      onSort({ iter: value, order: 'desc' })
+      onSort({ path: value, order: 'desc' })
     } else {
-      onSort({ iter: value, order: 'asc' })
+      onSort({ path: value, order: 'asc' })
     }
   }
   return (
@@ -27,12 +27,12 @@ const TableHeader = ({
             key={column}
             scope="col"
             onClick={
-              columns[column].iter !== undefined
-                ? () => handleSort(columns[column].iter)
+              columns[column].path !== undefined
+                ? () => handleSort(columns[column].path)
                 : undefined
             }
             {...{
-              role: columns[column].iter !== undefined ? 'button' : undefined
+              role: columns[column].path !== undefined ? 'button' : undefined
             }}
           >
             {columns[column].name}

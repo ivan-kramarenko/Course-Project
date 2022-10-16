@@ -25,7 +25,7 @@ const Guests = ({
   const [professions, setProfessions] = useState<object | IProfession[]>([])
   const [selectedProf, setSelectedProf] = useState<IProfession>()
   const [sortValue, setSortValue] = useState<ISortedValue>({
-    iter: 'name',
+    path: 'name',
     order: 'asc'
   })
 
@@ -52,13 +52,13 @@ const Guests = ({
     setSelectedProf(undefined)
   }
   const handleSort = (value: ISortedValue): void => {
-    setSortValue({ iter: value.iter, order: value.order })
+    setSortValue({ path: value.path, order: value.order })
   }
 
   const filteredGuests = filterGuestsByItem(guests, selectedProf)
   const sortedGuests = _.orderBy(
     filteredGuests,
-    [sortValue.iter],
+    [sortValue.path],
     // @ts-expect-error Unreachable error code
     [sortValue.order]
   )

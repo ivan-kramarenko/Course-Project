@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { IGuest, ISortedValue } from '../interfaces/models'
-import Guest from './Guest'
+import TableBody from './TableBody'
 import TableHeader from './TableHeader'
 
 interface GuestsTableProps {
@@ -19,12 +19,12 @@ const GuestsTable = ({
   selectedSort
 }: GuestsTableProps): ReactElement => {
   const columns = {
-    name: { iter: 'name', name: 'Имя' },
+    name: { path: 'name', name: 'Имя' },
     qualities: { name: 'Качества' },
-    profession: { iter: 'profession.name', name: 'Профессия' },
-    completedMeetings: { iter: 'completedMeetings', name: 'Встретился, раз' },
-    rate: { iter: 'rate', name: 'Оценка' },
-    bookmark: { iter: 'bookmark', name: 'Избранное' },
+    profession: { path: 'profession.name', name: 'Профессия' },
+    completedMeetings: { path: 'completedMeetings', name: 'Встретился, раз' },
+    rate: { path: 'rate', name: 'Оценка' },
+    bookmark: { path: 'bookmark', name: 'Избранное' },
     delete: {}
   }
   return (
@@ -34,16 +34,12 @@ const GuestsTable = ({
         selectedSort={selectedSort}
         columns={columns}
       />
-      <tbody className="table-group-divider">
-        {guests.map((guest: IGuest) => (
-          <Guest
-            key={guest._id}
-            guest={guest}
-            removeGuest={removeGuest}
-            switchBookmark={switchBookmark}
-          />
-        ))}
-      </tbody>
+      <TableBody
+        data={guests}
+        removeGuest={removeGuest}
+        switchBookmark={switchBookmark}
+        columns={columns}
+      />
     </table>
   )
 }
