@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import { CaretDownFill, CaretUpFill } from 'react-bootstrap-icons'
 import { ISortedValue } from '../interfaces/models'
 
 interface TableHeaderProps {
@@ -19,6 +20,16 @@ const TableHeader = ({
       onSort({ path: value, order: 'asc' })
     }
   }
+  const setCaretArrow = (item: ISortedValue): any => {
+    const isSame = item.path === selectedSort.path
+    if (isSame && selectedSort.order === 'asc') {
+      return <CaretDownFill />
+    }
+    if (isSame && selectedSort.order === 'desc') {
+      return <CaretUpFill />
+    }
+    return ''
+  }
   return (
     <thead>
       <tr>
@@ -36,6 +47,7 @@ const TableHeader = ({
             }}
           >
             {columns[column].name}
+            {setCaretArrow(columns[column])}
           </th>
         ))}
       </tr>
@@ -43,3 +55,4 @@ const TableHeader = ({
   )
 }
 export default TableHeader
+// line 39
