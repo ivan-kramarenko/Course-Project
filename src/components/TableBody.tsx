@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import _ from 'lodash'
 import { IGuest } from '../interfaces/models'
 
@@ -11,7 +11,7 @@ const TableBody = ({ data, columns }: TableBodyProps): ReactElement => {
   const renderContent = (
     item: IGuest,
     column: string
-  ): ReactElement | string | undefined => {
+  ): ReactElement | string | undefined | ReactNode => {
     if (column === 'rate') {
       return `${item[column]} / 5`
     }

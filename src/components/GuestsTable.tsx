@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { IGuest, ISortedValue } from '../interfaces/models'
 import ButtonBookmark from './ButtonBookmark'
 import ButtonDelete from './ButtonDelete'
+import QualitiesList from './QualitiesList'
 import TableBody from './TableBody'
 import TableHeader from './TableHeader'
 
@@ -22,7 +23,13 @@ const GuestsTable = ({
 }: GuestsTableProps): ReactElement => {
   const columns = {
     name: { path: 'name', name: 'Имя' },
-    qualities: { name: 'Качества' },
+    qualities: {
+      name: 'Качества',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      component: (guest: IGuest) => (
+        <QualitiesList qualities={guest.qualities} />
+      )
+    },
     profession: { path: 'profession.name', name: 'Профессия' },
     completedMeetings: { path: 'completedMeetings', name: 'Встретился, раз' },
     rate: { path: 'rate', name: 'Оценка' },
