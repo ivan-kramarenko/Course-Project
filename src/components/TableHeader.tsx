@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import { CaretDownFill, CaretUpFill } from 'react-bootstrap-icons'
 import { ISortedValue } from '../interfaces/models'
 
 interface TableHeaderProps {
@@ -14,10 +15,20 @@ const TableHeader = ({
 }: TableHeaderProps): ReactElement => {
   const handleSort = (value: string): void => {
     if (selectedSort.order === 'asc') {
-      onSort({ iter: value, order: 'desc' })
+      onSort({ path: value, order: 'desc' })
     } else {
-      onSort({ iter: value, order: 'asc' })
+      onSort({ path: value, order: 'asc' })
     }
+  }
+  const setCaretArrow = (item: ISortedValue): any => {
+    const isSame = item.path === selectedSort.path
+    if (isSame && selectedSort.order === 'asc') {
+      return <CaretDownFill />
+    }
+    if (isSame && selectedSort.order === 'desc') {
+      return <CaretUpFill />
+    }
+    return ''
   }
   return (
     <thead>
@@ -27,15 +38,16 @@ const TableHeader = ({
             key={column}
             scope="col"
             onClick={
-              columns[column].iter !== undefined
-                ? () => handleSort(columns[column].iter)
+              columns[column].path !== undefined
+                ? () => handleSort(columns[column].path)
                 : undefined
             }
             {...{
-              role: columns[column].iter !== undefined ? 'button' : undefined
+              role: columns[column].path !== undefined ? 'button' : undefined
             }}
           >
             {columns[column].name}
+            {setCaretArrow(columns[column])}
           </th>
         ))}
       </tr>
@@ -43,3 +55,4 @@ const TableHeader = ({
   )
 }
 export default TableHeader
+// line 39

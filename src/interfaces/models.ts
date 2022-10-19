@@ -27,6 +27,6 @@ export interface IProfession {
 }
 
 export interface ISortedValue {
-  iter: string
+  path: string
   order: string
 }

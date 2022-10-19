@@ -1,6 +1,9 @@
 import React, { ReactElement } from 'react'
 import { IGuest, ISortedValue } from '../interfaces/models'
-import Guest from './Guest'
+import ButtonBookmark from './ButtonBookmark'
+import ButtonDelete from './ButtonDelete'
+import QualitiesList from './QualitiesList'
+import TableBody from './TableBody'
 import TableHeader from './TableHeader'
 
 interface GuestsTableProps {
@@ -19,13 +22,35 @@ const GuestsTable = ({
   selectedSort
 }: GuestsTableProps): ReactElement => {
   const columns = {
-    name: { iter: 'name', name: 'Имя' },
-    qualities: { name: 'Качества' },
-    profession: { iter: 'profession.name', name: 'Профессия' },
-    completedMeetings: { iter: 'completedMeetings', name: 'Встретился, раз' },
-    rate: { iter: 'rate', name: 'Оценка' },
-    bookmark: { iter: 'bookmark', name: 'Избранное' },
-    delete: {}
+    name: { path: 'name', name: 'Имя' },
+    qualities: {
+      name: 'Качества',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      component: (guest: IGuest) => (
+        <QualitiesList qualities={guest.qualities} />
+      )
+    },
+    profession: { path: 'profession.name', name: 'Профессия' },
+    completedMeetings: { path: 'completedMeetings', name: 'Встретился, раз' },
+    rate: { path: 'rate', name: 'Оценка' },
+    bookmark: {
+      path: 'bookmark',
+      name: 'Избранное',
+      // eslint-disable-next-line react/no-unstable-nested-components
+      component: (guest: IGuest) => (
+        <ButtonBookmark
+          bookmark={guest.bookmark}
+          switchBookmark={switchBookmark}
+          guest={guest}
+        />
+      )
+    },
+    delete: {
+      // eslint-disable-next-line react/no-unstable-nested-components
+      component: (guest: IGuest) => (
+        <ButtonDelete guest={guest} removeGuest={removeGuest} />
+      )
+    }
   }
   return (
     <table className="table table-responsive">
@@ -34,16 +59,7 @@ const GuestsTable = ({
         selectedSort={selectedSort}
         columns={columns}
       />
-      <tbody className="table-group-divider">
-        {guests.map((guest: IGuest) => (
-          <Guest
-            key={guest._id}
-            guest={guest}
-            removeGuest={removeGuest}
-            switchBookmark={switchBookmark}
-          />
-        ))}
-      </tbody>
+      <TableBody data={guests} columns={columns} />
     </table>
   )
 }

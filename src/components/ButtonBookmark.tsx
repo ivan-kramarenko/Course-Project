@@ -1,29 +1,25 @@
 import React, { ReactElement } from 'react'
+import { Bookmark, BookmarkFill } from 'react-bootstrap-icons'
+import { IGuest } from '../interfaces/models'
 
 interface ButtonBookmarkProps {
   bookmark: boolean
-  handleBookmarkClick: () => void
+  guest: IGuest
+  switchBookmark: (id: string) => void
 }
 
 const ButtonBookmark = ({
   bookmark,
-  handleBookmarkClick
+  guest,
+  switchBookmark
 }: ButtonBookmarkProps): ReactElement => {
-  const setBtnClassName = (): string => {
-    const btnBgClassName = !bookmark ? 'btn-secondary' : 'btn-primary'
-    const btnClasses = ['btn', btnBgClassName]
-    return btnClasses.join(' ')
-  }
-  const setBtnText = (): string => (!bookmark ? 'False' : 'True')
-  return (
-    <button
-      type="button"
-      onClick={() => handleBookmarkClick()}
-      className={setBtnClassName()}
-    >
-      {setBtnText()}
-    </button>
-  )
+  const renderBookmark = (): any =>
+    !bookmark ? (
+      <Bookmark type="button" onClick={() => switchBookmark(guest._id)} />
+    ) : (
+      <BookmarkFill type="button" onClick={() => switchBookmark(guest._id)} />
+    )
+  return <> {renderBookmark()}</>
 }
 
 export default ButtonBookmark
