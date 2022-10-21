@@ -8,17 +8,23 @@ import api from '../api/index'
 import HeaderGuests from './HeaderGuests'
 import GuestsTable from './GuestsTable'
 
-interface GuestsProps {
-  guests: IGuest[]
-  removeGuest: (filteredId: string) => void
-  switchBookmark: (elemId: string) => void
-}
+const Guests = (): ReactElement => {
+  const [guests, setGuests] = useState<IGuest[]>([])
+  useEffect(() => {
+    void api.users.fetchAll().then((data) => {
+      setGuests(data)
+    })
+  }, [])
+  const removeGuest = (filteredId: string): void => {
+    setGuests(guests.filter((guest) => guest._id !== filteredId))
+  }
+  const switchBookmark = (id: string): void => {
+    const elemById = guests.findIndex((guest) => guest._id === id)
+    const newGuests = [...guests]
+    newGuests[elemById].bookmark = !newGuests[elemById].bookmark
+    setGuests(newGuests)
+  }
 
-const Guests = ({
-  guests,
-  removeGuest,
-  switchBookmark
-}: GuestsProps): ReactElement => {
   const pageSize = 4
 
   const [currentPage, setCurrentPage] = useState(1)
@@ -66,37 +72,45 @@ const Guests = ({
   const count = filteredGuests.length
 
   return (
-    <div className="d-flex justify-content-center">
-      <div className="d-flex flex-column flex-shrink-0 m-2">
-        <GroupList
-          items={professions}
-          onItemSelect={handleProfessionSelect}
-          valueProperty="_id"
-          contentProperty="name"
-          selectedItem={selectedProf}
-          clearFilter={clearFilter}
-        />
-      </div>
-
-      <div className="d-flex flex-column">
-        <HeaderGuests countOfGuests={count} />
-        {count > 0 && (
-          <GuestsTable
-            guests={guestsCrop}
-            removeGuest={removeGuest}
-            switchBookmark={switchBookmark}
-            onSort={handleSort}
-            selectedSort={sortValue}
-          />
-        )}
-        <Pagination
-          itemsCount={count}
-          pageSize={pageSize}
-          onPageChange={handlePageChange}
-          currentPage={currentPage}
-        />
-      </div>
-    </div>
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>
+      {Object.keys(guests).length === 0 ? (
+        <div className="d-flex justify-content-center align-items-center vw-100 vh-100">
+          Loading...
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center">
+          <div className="d-flex flex-column flex-shrink-0 m-2">
+            <GroupList
+              items={professions}
+              onItemSelect={handleProfessionSelect}
+              valueProperty="_id"
+              contentProperty="name"
+              selectedItem={selectedProf}
+              clearFilter={clearFilter}
+            />
+          </div>{' '}
+          <div className="d-flex flex-column">
+            <HeaderGuests countOfGuests={count} />
+            {count > 0 && (
+              <GuestsTable
+                guests={guestsCrop}
+                removeGuest={removeGuest}
+                switchBookmark={switchBookmark}
+                onSort={handleSort}
+                selectedSort={sortValue}
+              />
+            )}
+            <Pagination
+              itemsCount={count}
+              pageSize={pageSize}
+              onPageChange={handlePageChange}
+              currentPage={currentPage}
+            />
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
