@@ -3,8 +3,7 @@ import { IGuest, ISortedValue } from '../interfaces/models'
 import ButtonBookmark from './ButtonBookmark'
 import ButtonDelete from './ButtonDelete'
 import QualitiesList from './QualitiesList'
-import TableBody from './TableBody'
-import TableHeader from './TableHeader'
+import Table from './Table'
 
 interface GuestsTableProps {
   guests: IGuest[]
@@ -52,16 +51,7 @@ const GuestsTable = ({
       )
     }
   }
-  return (
-    <table className="table table-responsive">
-      <TableHeader
-        onSort={onSort}
-        selectedSort={selectedSort}
-        columns={columns}
-      />
-      <TableBody data={guests} columns={columns} />
-    </table>
-  )
+  return <Table {...{ onSort, selectedSort, columns, guests }} />
 }
 
 export default GuestsTable
