@@ -6,9 +6,7 @@ interface QualityProps {
 }
 
 const Quality = ({ quality }: QualityProps): ReactElement => (
-  <span className={`m-1 badge bg-${quality.color}`} key={quality._id}>
-    {quality.name}
-  </span>
+  <span className={`m-1 badge bg-${quality.color}`}>{quality.name}</span>
 )
 
 export default Quality

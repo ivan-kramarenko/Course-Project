@@ -25,3 +25,8 @@ export interface IProfession {
   [_id: string]: string
   name: string
 }
+
+export interface ISortedValue {
+  path: string
+  order: string
+}
