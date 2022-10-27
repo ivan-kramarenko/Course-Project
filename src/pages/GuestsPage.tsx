@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
+import Guests from '../components/Guests'
 
-const GuestsPage = (): ReactElement => <h1>Guests (Temporary)</h1>
+const GuestsPage = (): ReactElement => <Guests />
 
 export default GuestsPage
