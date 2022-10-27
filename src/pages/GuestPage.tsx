@@ -1,22 +1,33 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import API from '../api'
+import QualitiesList from '../components/QualitiesList'
+import { IGuest } from '../interfaces/models'
 
 const GuestPage = (): ReactElement => {
-  const guest = {
-    name: 'Боб Келсо',
-    profession: {
-      name: 'Доктор'
-    },
-    completedMeetings: 100,
-    rate: 3.5
-  }
+  const { guestId } = useParams()
+  const [guest, setGuest] = useState<IGuest>()
+  const navigate = useNavigate()
+  useEffect(() => {
+    API.users.getById(guestId).then((data) => {
+      setGuest(data)
+    })
+  }, [])
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      <h1>{guest.name}</h1>
-      <h2>Профессия: {guest.profession.name}</h2>
-      <ul>qualities</ul>
-      <p>Completed Meetings: {guest.completedMeetings}</p>
-      <p>Rate: {guest.rate} / 5</p>
-      <button type="button">To guests</button>
+      {guest != null && (
+        <>
+          <h1>{guest.name}</h1>
+          <h2>Профессия: {guest.profession.name}</h2>
+          <QualitiesList qualities={guest?.qualities} />
+          <p>Completed Meetings: {guest.completedMeetings}</p>
+          <p>Rate: {guest.rate} / 5</p>
+          <button type="button" onClick={() => navigate(-1)}>
+            To guests
+          </button>
+        </>
+      )}
     </>
   )
 }
