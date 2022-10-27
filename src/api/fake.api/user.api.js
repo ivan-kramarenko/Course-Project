@@ -11,7 +11,11 @@ const qualities = {
     name: 'Странный',
     color: 'secondary'
   },
-  buller: { _id: '67rdca3eeb7f6fgeed4711012', name: 'Троль', color: 'success' },
+  buller: {
+    _id: '67rdca3eeb7f6fgeed4711012',
+    name: 'Тролль',
+    color: 'success'
+  },
   alcoholic: {
     _id: '67rdca3eeb7f6fgeed471101',
     name: 'Алкоголик',
@@ -144,5 +148,12 @@ export const fetchAll = () =>
   new Promise((resolve) => {
     window.setTimeout(() => {
       resolve(users)
+    }, 1000)
+  })
+
+export const getById = (id) =>
+  new Promise((resolve) => {
+    window.setTimeout(() => {
+      resolve(users.find((user) => user._id === id))
     }, 1000)
   })
