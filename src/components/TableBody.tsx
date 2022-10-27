@@ -1,5 +1,6 @@
 import React, { ReactElement, ReactNode } from 'react'
 import _ from 'lodash'
+import { Link } from 'react-router-dom'
 import { IGuest } from '../interfaces/models'
 
 interface TableBodyProps {
@@ -14,6 +15,9 @@ const TableBody = ({ data, columns }: TableBodyProps): ReactElement => {
   ): ReactElement | string | undefined | ReactNode => {
     if (column === 'rate') {
       return `${item[column]} / 5`
+    }
+    if (column === 'name') {
+      return <Link to={item._id}>{item[column]}</Link>
     }
     if (columns[column].component != null) {
       const { component } = columns[column]
