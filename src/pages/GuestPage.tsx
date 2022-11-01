@@ -9,7 +9,7 @@ const GuestPage = (): ReactElement => {
   const [guest, setGuest] = useState<IGuest>()
   const navigate = useNavigate()
   useEffect(() => {
-    API.users.getById(guestId).then((data) => {
+    void API.users.getById(guestId).then((data) => {
       setGuest(data)
     })
   }, [])
