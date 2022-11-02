@@ -1,6 +1,6 @@
 import React, { useState, ReactElement, useEffect } from 'react'
 import _ from 'lodash'
-import { filterGuestsByItem, paginate } from '../core/utils'
+import { filterGuests, filterGuestsByItem, paginate } from '../core/utils'
 import { IGuest, IProfession, ISortedValue } from '../interfaces/models'
 import GroupList from './GroupList'
 import Pagination from './Pagination'
@@ -35,6 +35,7 @@ const Guests = (): ReactElement => {
     path: 'name',
     order: 'asc'
   })
+  const [searchGuest, setSearchGuest] = useState('')
 
   useEffect(() => {
     void api.professions.fetchAll().then((data) => {
@@ -62,7 +63,12 @@ const Guests = (): ReactElement => {
     setSortValue({ path: value.path, order: value.order })
   }
 
-  const filteredGuests = filterGuestsByItem(guests, selectedProf)
+  const handleSearch = (value: string): void => {
+    setSearchGuest(value)
+  }
+
+  const filteredGuests = filterGuests(guests, selectedProf, searchGuest)
+
   const sortedGuests = _.orderBy(
     filteredGuests,
     [sortValue.path],
@@ -95,7 +101,7 @@ const Guests = (): ReactElement => {
             <HeaderGuests countOfGuests={count} />
             <div className="container">
               <div className="row">
-                <SearchField />
+                <SearchField {...{ handleSearch }} />
               </div>
             </div>
             {count > 0 && (

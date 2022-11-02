@@ -1,13 +1,17 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 
-// interface SearchFieldProps {}
+interface SearchFieldProps {
+  handleSearch: (value: string) => void
+}
 
-const SearchField = (): // {}: SearchFieldProps
-ReactElement => {
+const SearchField = ({ handleSearch }: SearchFieldProps): ReactElement => {
   const [value, setValue] = useState('')
   const handleChange = ({ target }: { target: any }): void => {
     setValue(target.value)
   }
+  useEffect(() => {
+    handleSearch(value)
+  }, [value])
   return (
     <input
       id="search"
