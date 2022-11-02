@@ -7,6 +7,7 @@ import Pagination from './Pagination'
 import api from '../api/index'
 import HeaderGuests from './HeaderGuests'
 import GuestsTable from './GuestsTable'
+import SearchField from './SearchField'
 
 const Guests = (): ReactElement => {
   const [guests, setGuests] = useState<IGuest[]>([])
@@ -92,6 +93,11 @@ const Guests = (): ReactElement => {
           </div>{' '}
           <div className="d-flex flex-column">
             <HeaderGuests countOfGuests={count} />
+            <div className="container">
+              <div className="row">
+                <SearchField />
+              </div>
+            </div>
             {count > 0 && (
               <GuestsTable
                 guests={guestsCrop}
