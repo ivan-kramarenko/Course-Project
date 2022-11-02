@@ -9,16 +9,14 @@ ReactElement => {
     setValue(target.value)
   }
   return (
-    <label htmlFor="search">
-      Search guest
-      <input
-        id="search"
-        name="search"
-        value={value}
-        onChange={(e) => handleChange(e)}
-        className="form-control"
-      />
-    </label>
+    <input
+      id="search"
+      name="search"
+      placeholder="Search guests"
+      value={value}
+      onChange={(e) => handleChange(e)}
+      className="form-control"
+    />
   )
 }
 
