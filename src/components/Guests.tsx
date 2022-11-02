@@ -1,12 +1,13 @@
 import React, { useState, ReactElement, useEffect } from 'react'
 import _ from 'lodash'
-import { filterGuestsByItem, paginate } from '../core/utils'
+import { filterGuests, paginate } from '../core/utils'
 import { IGuest, IProfession, ISortedValue } from '../interfaces/models'
 import GroupList from './GroupList'
 import Pagination from './Pagination'
 import api from '../api/index'
 import HeaderGuests from './HeaderGuests'
 import GuestsTable from './GuestsTable'
+import SearchField from './SearchField'
 
 const Guests = (): ReactElement => {
   const [guests, setGuests] = useState<IGuest[]>([])
@@ -34,6 +35,7 @@ const Guests = (): ReactElement => {
     path: 'name',
     order: 'asc'
   })
+  const [searchGuest, setSearchGuest] = useState('')
 
   useEffect(() => {
     void api.professions.fetchAll().then((data) => {
@@ -61,7 +63,12 @@ const Guests = (): ReactElement => {
     setSortValue({ path: value.path, order: value.order })
   }
 
-  const filteredGuests = filterGuestsByItem(guests, selectedProf)
+  const handleSearch = (value: string): void => {
+    setSearchGuest(value)
+  }
+
+  const filteredGuests = filterGuests(guests, selectedProf, searchGuest)
+
   const sortedGuests = _.orderBy(
     filteredGuests,
     [sortValue.path],
@@ -92,6 +99,11 @@ const Guests = (): ReactElement => {
           </div>{' '}
           <div className="d-flex flex-column">
             <HeaderGuests countOfGuests={count} />
+            <div className="container">
+              <div className="row">
+                <SearchField {...{ handleSearch }} />
+              </div>
+            </div>
             {count > 0 && (
               <GuestsTable
                 guests={guestsCrop}
