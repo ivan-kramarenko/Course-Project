@@ -1,6 +1,6 @@
 import React, { useState, ReactElement, useEffect } from 'react'
 import _ from 'lodash'
-import { filterGuests, filterGuestsByItem, paginate } from '../core/utils'
+import { filterGuests, paginate } from '../core/utils'
 import { IGuest, IProfession, ISortedValue } from '../interfaces/models'
 import GroupList from './GroupList'
 import Pagination from './Pagination'
