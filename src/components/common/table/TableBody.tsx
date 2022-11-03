@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router-dom'
-import { IGuest } from '../interfaces/models'
+import { IGuest } from '../../../interfaces'
 
 interface TableBodyProps {
   data: IGuest[]

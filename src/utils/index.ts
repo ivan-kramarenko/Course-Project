@@ -1,4 +1,4 @@
-import { IGuest, IProfession } from '../../interfaces/models'
+import { IGuest, IProfession } from '../interfaces'
 
 export const getFirstAndSecondDigitOfNumber = (num: number): number[] => {
   const splittedNumberArray = num.toString().split('')

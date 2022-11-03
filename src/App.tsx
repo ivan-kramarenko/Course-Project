@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Layout from './components/Layout'
-import GuestPage from './pages/GuestPage'
-import GuestsPage from './pages/GuestsPage'
-import LoginPage from './pages/LoginPage'
-import MainPage from './pages/MainPage'
+import Layout from './components/ui/Layout'
+import GuestPage from './components/pages/GuestPage'
+import GuestsPage from './components/pages/GuestsPage'
+import LoginPage from './components/pages/LoginPage'
+import MainPage from './components/pages/MainPage'
 
 const App = (): ReactElement => (
   <Routes>

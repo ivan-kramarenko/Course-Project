@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { IProfession } from '../interfaces/models'
+import { IProfession } from '../../interfaces'
 
 interface GroupListProps {
   items: object | IProfession[]
