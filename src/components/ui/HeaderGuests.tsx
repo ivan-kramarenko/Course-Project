@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { guestsCountByRussianGrammar } from '../core/utils/index'
+import { guestsCountByRussianGrammar } from '../../utils/index'
 
 interface HeaderGuestsProps {
   countOfGuests: number

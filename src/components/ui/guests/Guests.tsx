@@ -1,13 +1,13 @@
 import React, { useState, ReactElement, useEffect } from 'react'
 import _ from 'lodash'
-import { filterGuests, paginate } from '../core/utils'
-import { IGuest, IProfession, ISortedValue } from '../interfaces/models'
-import GroupList from './GroupList'
-import Pagination from './Pagination'
-import api from '../api/index'
-import HeaderGuests from './HeaderGuests'
+import { filterGuests, paginate } from '../../../utils'
+import { IGuest, IProfession, ISortedValue } from '../../../interfaces'
+import GroupList from '../../common/GroupList'
+import Pagination from '../../common/Pagination'
+import api from '../../../api/index'
+import HeaderGuests from '../HeaderGuests'
 import GuestsTable from './GuestsTable'
-import SearchField from './SearchField'
+import SearchField from '../SearchField'
 
 const Guests = (): ReactElement => {
   const [guests, setGuests] = useState<IGuest[]>([])

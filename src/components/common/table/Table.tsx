@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import TableBody from './TableBody'
 import TableHeader from './TableHeader'
-import { IGuest, ISortedValue } from '../interfaces/models'
+import { IGuest, ISortedValue } from '../../../interfaces'
 
 interface TableProps {
   onSort: (value: ISortedValue) => void
