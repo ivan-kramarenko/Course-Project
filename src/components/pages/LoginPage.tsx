@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
+import LoginForm from '../common/form/LoginForm'
 
-const LoginPage = (): ReactElement => <h1>Login</h1>
+const LoginPage = (): ReactElement => <LoginForm />
 
 export default LoginPage
