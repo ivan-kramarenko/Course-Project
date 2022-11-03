@@ -51,7 +51,9 @@ export function filterGuestsBySearch(
   if (searchQuery.trim() === '') {
     return guests
   }
-  return guests.filter((guest) => guest.name.includes(searchQuery))
+  return guests.filter((guest) =>
+    guest.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 }
 
 export function filterGuests(
