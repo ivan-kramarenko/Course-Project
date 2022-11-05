@@ -32,10 +32,10 @@ const LoginForm = (): ReactElement => {
   })
   return (
     <form
-      className="d-flex justify-content-center align-items-center flex-column"
+      className="d-flex justify-content-center align-items-center flex-column mt-5"
       onSubmit={() => handleSubmit(onSubmit)}
     >
-      <label htmlFor="email">
+      <label htmlFor="email" className="mt-5">
         Email
         <input
           className="form-control mb-2"
