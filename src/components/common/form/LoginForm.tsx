@@ -38,24 +38,30 @@ const LoginForm = (): ReactElement => {
       <label htmlFor="email" className="mt-5">
         Email
         <input
-          className="form-control mb-2"
+          className="form-control"
           id="email"
           type="email"
           {...register('email')}
         />
       </label>
-      <p>{errors.email?.message}</p>
+      {errors.email?.message != null && (
+        <div className="mb-2">{errors.email.message}</div>
+      )}
       <label htmlFor="password">
         Password
         <input
-          className="form-control mb-3"
+          className="form-control"
           id="password"
-          type="text"
+          type="password"
           {...register('password')}
         />
       </label>
-      <p>{errors.password?.message}</p>
-      <input className="btn btn-primary" type="submit" disabled={!isValid} />
+      {errors.password?.message != null && <div>{errors.password.message}</div>}
+      <input
+        className="btn btn-primary mt-3"
+        type="submit"
+        disabled={!isValid}
+      />
     </form>
   )
 }
