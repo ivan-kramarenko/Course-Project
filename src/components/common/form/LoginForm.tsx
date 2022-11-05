@@ -41,10 +41,7 @@ const LoginForm = (): ReactElement => {
           className="form-control mb-2"
           id="email"
           type="email"
-          {...register('email', {
-            required: true,
-            pattern: /^\S+@\S+\.\S+$/g
-          })}
+          {...register('email')}
         />
       </label>
       <p>{errors.email?.message}</p>
@@ -54,9 +51,7 @@ const LoginForm = (): ReactElement => {
           className="form-control mb-3"
           id="password"
           type="text"
-          {...register('password', {
-            required: 'Password is required'
-          })}
+          {...register('password')}
         />
       </label>
       <p>{errors.password?.message}</p>
