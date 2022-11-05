@@ -7,11 +7,11 @@ const schema = object({
   email: string().required('Email is required').email('Email must be correct'),
   password: string()
     .required('Password is required')
-    .min(8, 'Minimum 8 characters')
     .matches(
       /^[A-Za-z]+\d+\S$/g,
       'Password must contain letters, numbers and one special character'
     )
+    .min(8, 'Minimum 8 characters')
 }).required()
 
 interface IFormInputs {
