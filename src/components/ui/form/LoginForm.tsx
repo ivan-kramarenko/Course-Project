@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { object, string } from 'yup'
+import TextField from '../../common/form/TextField'
+import { ILoginFormInputs } from '../../../interfaces'
 
 const schema = object({
   email: string().required('Email is required').email('Email must be correct'),
@@ -14,19 +16,14 @@ const schema = object({
     .min(8, 'Minimum 8 characters')
 }).required()
 
-interface IFormInputs {
-  email: string
-  password: string
-}
-
-const onSubmit: SubmitHandler<IFormInputs> = (data) => alert(data)
+const onSubmit: SubmitHandler<ILoginFormInputs> = (data) => alert(data)
 
 const LoginForm = (): ReactElement => {
   const {
     register,
     formState: { errors, isValid },
     handleSubmit
-  } = useForm<IFormInputs>({
+  } = useForm<ILoginFormInputs>({
     mode: 'onBlur',
     resolver: yupResolver(schema)
   })
@@ -35,28 +32,20 @@ const LoginForm = (): ReactElement => {
       className="d-flex justify-content-center align-items-center flex-column mt-5"
       onSubmit={() => handleSubmit(onSubmit)}
     >
-      <label htmlFor="email" className="mt-5">
-        Email
-        <input
-          className="form-control"
+      <div className="mt-5">
+        <TextField
+          label="Email"
           id="email"
-          type="email"
-          {...register('email')}
+          {...{ register }}
+          error={errors.email?.message}
         />
-      </label>
-      {errors.email?.message != null && (
-        <div className="mb-2">{errors.email.message}</div>
-      )}
-      <label htmlFor="password">
-        Password
-        <input
-          className="form-control"
-          id="password"
-          type="password"
-          {...register('password')}
-        />
-      </label>
-      {errors.password?.message != null && <div>{errors.password.message}</div>}
+      </div>
+      <TextField
+        label="Password"
+        id="password"
+        {...{ register }}
+        error={errors.password?.message}
+      />
       <input
         className="btn btn-primary mt-3"
         type="submit"

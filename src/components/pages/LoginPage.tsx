@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import LoginForm from '../common/form/LoginForm'
+import LoginForm from '../ui/form/LoginForm'
 
 const LoginPage = (): ReactElement => <LoginForm />
 
