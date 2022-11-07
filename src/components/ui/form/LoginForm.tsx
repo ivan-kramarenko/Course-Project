@@ -16,7 +16,9 @@ const schema = object({
     .min(8, 'Minimum 8 characters')
 }).required()
 
-const onSubmit: SubmitHandler<ILoginFormInputs> = (data) => alert(data)
+const onSubmit: SubmitHandler<ILoginFormInputs> = (data) => {
+  // alert(data)
+}
 
 const LoginForm = (): ReactElement => {
   const {

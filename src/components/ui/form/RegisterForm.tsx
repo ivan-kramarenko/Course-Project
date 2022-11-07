@@ -29,7 +29,9 @@ const RegisterForm = (): ReactElement => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit: SubmitHandler<IRegisterFormInputs> = (data) => alert(data)
+  const onSubmit: SubmitHandler<IRegisterFormInputs> = (data) => {
+    // alert(data)
+  }
 
   return (
     <form
