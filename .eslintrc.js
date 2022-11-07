@@ -42,7 +42,8 @@ module.exports = {
       2,
       { namedComponents: 'arrow-function' }
     ],
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-no-useless-fragment': 'off'
   },
   settings: {
     'import/resolver': {

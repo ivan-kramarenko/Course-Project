@@ -79,7 +79,6 @@ const Guests = (): ReactElement => {
   const count = filteredGuests.length
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {Object.keys(guests).length === 0 ? (
         <div className="d-flex justify-content-center align-items-center vw-100 vh-100">
