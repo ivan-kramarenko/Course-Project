@@ -10,7 +10,7 @@ const App = (): ReactElement => (
   <Routes>
     <Route path="/" element={<Layout />}>
       <Route index element={<MainPage />} />
-      <Route path="login" element={<AuthPage />} />
+      <Route path="login/:type?" element={<AuthPage />} />
       <Route path="guests" element={<GuestsPage />} />
       <Route path="guests/:guestId" element={<GuestPage />} />
     </Route>

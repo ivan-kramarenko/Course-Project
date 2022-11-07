@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react'
-import { useForm, SubmitHandler } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import { object, string } from 'yup'
-import TextField from '../../common/form/TextField'
 import { ILoginFormInputs } from '../../../interfaces'
+import TextField from '../../common/form/TextField'
 
 const schema = object({
   email: string().required('Email is required').email('Email must be correct'),
@@ -37,6 +37,7 @@ const LoginForm = (): ReactElement => {
         <TextField
           label="Email"
           id="email"
+          type="email"
           {...{ register }}
           error={errors.email?.message}
         />
@@ -44,6 +45,7 @@ const LoginForm = (): ReactElement => {
       <TextField
         label="Password"
         id="password"
+        type="password"
         {...{ register }}
         error={errors.password?.message}
       />

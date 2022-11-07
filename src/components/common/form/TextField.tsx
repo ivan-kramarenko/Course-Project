@@ -1,32 +1,25 @@
 import React, { ReactElement } from 'react'
 import { UseFormRegister } from 'react-hook-form'
-import { ILoginFormInputs } from '../../../interfaces'
 
 interface TextFieldProps {
   label: string
   id: string
-  register: UseFormRegister<ILoginFormInputs>
+  type: string
   error: string | undefined
+  register: UseFormRegister<any>
 }
 
 const TextField = ({
   label,
   id,
+  type,
   register,
   error
 }: TextFieldProps): ReactElement => (
   <>
     <label htmlFor={id}>
       {label}
-      <input
-        className="form-control"
-        id={id}
-        type={id}
-        {
-          // @ts-expect-error
-          ...register(id)
-        }
-      />
+      <input className="form-control" id={id} type={type} {...register(id)} />
     </label>
     {error != null && <div className="mb-2 text-center">{error}</div>}
   </>
