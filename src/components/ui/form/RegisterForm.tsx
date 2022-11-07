@@ -30,7 +30,7 @@ const RegisterForm = (): ReactElement => {
   })
 
   const onSubmit: SubmitHandler<IRegisterFormInputs> = (data) => {
-    // alert(data)
+    alert(data)
   }
 
   return (

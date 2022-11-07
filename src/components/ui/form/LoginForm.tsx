@@ -17,7 +17,7 @@ const schema = object({
 }).required()
 
 const onSubmit: SubmitHandler<ILoginFormInputs> = (data) => {
-  // alert(data)
+  alert(data)
 }
 
 const LoginForm = (): ReactElement => {
