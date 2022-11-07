@@ -17,7 +17,7 @@ const AuthPage = (): ReactElement => {
           <div className="d-flex align-items-center mt-2">
             <span>Already have account?</span>
             <button
-              className="btn btn-sm btn-primary"
+              className="btn btn-sm btn-primary m-1"
               type="button"
               onClick={toggleFormType}
             >
@@ -31,7 +31,7 @@ const AuthPage = (): ReactElement => {
           <div className="d-flex align-items-center mt-2">
             <span>Don&apos;t have account?</span>
             <button
-              className="btn btn-sm btn-primary"
+              className="btn btn-sm btn-primary m-1"
               type="button"
               onClick={toggleFormType}
             >
