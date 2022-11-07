@@ -34,4 +34,5 @@ export interface ILoginFormInputs {
 
 export interface IRegisterFormInputs extends ILoginFormInputs {
   repeatPassword: string
+  profession: string
 }

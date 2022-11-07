@@ -29,6 +29,7 @@ const LoginForm = (): ReactElement => {
     mode: 'onBlur',
     resolver: yupResolver(schema)
   })
+
   return (
     <form
       className="d-flex justify-content-center align-items-center flex-column mt-5"
