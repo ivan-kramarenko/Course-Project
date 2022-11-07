@@ -1,11 +1,9 @@
 import React, { ReactElement, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import LoginForm from '../ui/form/LoginForm'
 import RegisterForm from '../ui/form/RegisterForm'
 
 const AuthPage = (): ReactElement => {
-  const { type } = useParams()
-  const [formType, setFormType] = useState(type === 'register' ? type : 'login')
+  const [formType, setFormType] = useState('login')
   const toggleFormType = (): void => {
     setFormType((prevState) =>
       prevState === 'register' ? 'login' : 'register'
@@ -14,25 +12,33 @@ const AuthPage = (): ReactElement => {
   return (
     <>
       {formType === 'register' ? (
-        <>
+        <div className="d-flex justify-content-center align-items-center flex-column">
           <RegisterForm />
-          <p>
-            Already have account?
-            <button type="button" onClick={toggleFormType}>
+          <div className="d-flex align-items-center mt-2">
+            <span>Already have account?</span>
+            <button
+              className="btn btn-sm btn-primary"
+              type="button"
+              onClick={toggleFormType}
+            >
               Sign in
             </button>
-          </p>
-        </>
+          </div>
+        </div>
       ) : (
-        <>
+        <div className="d-flex justify-content-center align-items-center flex-column">
           <LoginForm />
-          <p>
-            Not have account?
-            <button type="button" onClick={toggleFormType}>
+          <div className="d-flex align-items-center mt-2">
+            <span>Don&apos;t have account?</span>
+            <button
+              className="btn btn-sm btn-primary"
+              type="button"
+              onClick={toggleFormType}
+            >
               Sign up
             </button>
-          </p>
-        </>
+          </div>
+        </div>
       )}
     </>
   )

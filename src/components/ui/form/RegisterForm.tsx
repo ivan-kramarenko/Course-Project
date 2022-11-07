@@ -61,7 +61,7 @@ const RegisterForm = (): ReactElement => {
         error={errors.repeatPassword?.message}
       />
       <input
-        className="btn btn-primary mt-3"
+        className="btn btn-success mt-3"
         type="submit"
         disabled={!isValid}
       />
