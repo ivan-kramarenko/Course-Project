@@ -17,11 +17,11 @@ const TextField = ({
   error
 }: TextFieldProps): ReactElement => (
   <>
-    <label htmlFor={id}>
+    <label htmlFor={id} className="w-100">
       {label}
       <input className="form-control" id={id} type={type} {...register(id)} />
+      {error != null && <div className="mb-2 text-center">{error}</div>}
     </label>
-    {error != null && <div className="mb-2 text-center">{error}</div>}
   </>
 )
 

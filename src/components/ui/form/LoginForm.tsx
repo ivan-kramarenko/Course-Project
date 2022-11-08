@@ -32,19 +32,17 @@ const LoginForm = (): ReactElement => {
 
   return (
     <form
-      className="d-flex justify-content-center align-items-center flex-column mt-5"
+      className="d-flex justify-content-center align-items-center flex-column mt-5 w-25"
       onSubmit={() => handleSubmit(onSubmit)}
     >
       <h2 className="mt-3">Login</h2>
-      <div className="mt-2">
-        <TextField
-          label="Email"
-          id="email"
-          type="email"
-          {...{ register }}
-          error={errors.email?.message}
-        />
-      </div>
+      <TextField
+        label="Email"
+        id="email"
+        type="email"
+        {...{ register }}
+        error={errors.email?.message}
+      />
       <TextField
         label="Password"
         id="password"
