@@ -1,11 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm, SubmitHandler } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { object, ref, string } from 'yup'
 import { IProfession, IRegisterFormInputs } from '../../../interfaces'
 import TextField from '../../common/form/TextField'
 import API from '../../../api'
 import SelectField from '../../common/form/SelectField'
+import RadioField from '../../common/form/RadioField'
 
 const schema = object({
   email: string().required('Email is required').email('Email must be correct'),
@@ -19,7 +20,8 @@ const schema = object({
   repeatPassword: string()
     .oneOf([ref('password')], 'Passwords dont match')
     .required('Confirm password is required'),
-  profession: string().required('Profession is required')
+  profession: string().required('Profession is required'),
+  gender: string().required('Gender is required')
 }).required()
 
 const RegisterForm = (): ReactElement => {
@@ -42,14 +44,14 @@ const RegisterForm = (): ReactElement => {
     resolver: yupResolver(schema)
   })
 
-  const onSubmit: SubmitHandler<IRegisterFormInputs> = (data) => {
-    alert(data)
+  const onSubmit: SubmitHandler<IRegisterFormInputs> = (data: object): void => {
+    console.log(JSON.stringify(data))
   }
-
   return (
     <form
       className="d-flex justify-content-center align-items-center flex-column mt-5 w-25"
-      onSubmit={() => handleSubmit(onSubmit)}
+      // eslint-disable-next-line
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="mt-3">Register</h2>
       <TextField
@@ -79,6 +81,17 @@ const RegisterForm = (): ReactElement => {
         {...{ register }}
         items={professions}
         error={errors.profession?.message}
+      />
+      <RadioField
+        items={[
+          { name: 'Male', value: 'male' },
+          { name: 'Female', value: 'female' },
+          { name: 'Other', value: 'other' }
+        ]}
+        label="Gender"
+        id="gender"
+        {...{ register }}
+        error={errors.gender?.message}
       />
       <input
         className="btn btn-success mt-3"

@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { UseFormRegister } from 'react-hook-form'
 import { IProfession } from '../../../interfaces'
+import ErrorField from './ErrorField'
 
 interface SelectFieldProps {
   label: string
@@ -26,7 +27,7 @@ const SelectField = ({
         ))}
       </select>
     </label>
-    {error != null && <div className="mb-2 text-center">{error}</div>}
+    <ErrorField {...{ error }} />
   </>
 )
 

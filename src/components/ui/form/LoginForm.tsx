@@ -16,8 +16,8 @@ const schema = object({
     .min(8, 'Minimum 8 characters')
 }).required()
 
-const onSubmit: SubmitHandler<ILoginFormInputs> = (data) => {
-  alert(data)
+const onSubmit: SubmitHandler<ILoginFormInputs> = (data: object): void => {
+  console.log(JSON.stringify(data))
 }
 
 const LoginForm = (): ReactElement => {
@@ -33,7 +33,8 @@ const LoginForm = (): ReactElement => {
   return (
     <form
       className="d-flex justify-content-center align-items-center flex-column mt-5 w-25"
-      onSubmit={() => handleSubmit(onSubmit)}
+      // eslint-disable-next-line
+      onSubmit={handleSubmit(onSubmit)}
     >
       <h2 className="mt-3">Login</h2>
       <TextField
