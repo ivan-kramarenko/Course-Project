@@ -36,4 +36,5 @@ export interface IRegisterFormInputs extends ILoginFormInputs {
   repeatPassword: string
   profession: string
   gender: string
+  qualities: IQuality[]
 }
