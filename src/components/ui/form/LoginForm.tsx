@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm, SubmitHandler } from 'react-hook-form'
-import { object, string } from 'yup'
+import { boolean, object, string } from 'yup'
 import { ILoginFormInputs } from '../../../interfaces'
 import TextField from '../../common/form/TextField'
+import CheckField from '../../common/form/CheckField'
 
 const schema = object({
   email: string().required('Email is required').email('Email must be correct'),
@@ -13,7 +14,8 @@ const schema = object({
       /^[A-Za-z]+\d+\S$/g,
       'Password must contain letters, numbers and one special character'
     )
-    .min(8, 'Minimum 8 characters')
+    .min(8, 'Minimum 8 characters'),
+  stay: boolean()
 }).required()
 
 const onSubmit: SubmitHandler<ILoginFormInputs> = (data: object): void => {
@@ -27,6 +29,9 @@ const LoginForm = (): ReactElement => {
     handleSubmit
   } = useForm<ILoginFormInputs>({
     mode: 'onBlur',
+    defaultValues: {
+      stay: false
+    },
     resolver: yupResolver(schema)
   })
 
@@ -50,6 +55,12 @@ const LoginForm = (): ReactElement => {
         type="password"
         {...{ register }}
         error={errors.password?.message}
+      />
+      <CheckField
+        label="Stay in system"
+        id="stay"
+        {...{ register }}
+        error={errors.stay?.message}
       />
       <input
         className="btn btn-success mt-3"

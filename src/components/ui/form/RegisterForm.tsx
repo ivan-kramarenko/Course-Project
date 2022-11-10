@@ -1,13 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { SubmitHandler, useForm, Controller } from 'react-hook-form'
-import { array, object, ref, string } from 'yup'
+import { array, boolean, object, ref, string } from 'yup'
 import { IProfession, IRegisterFormInputs } from '../../../interfaces'
 import TextField from '../../common/form/TextField'
 import API from '../../../api'
 import SelectField from '../../common/form/SelectField'
 import RadioField from '../../common/form/RadioField'
 import MultiSelectField from '../../common/form/MultiSelectField'
+import CheckField from '../../common/form/CheckField'
 
 const schema = object({
   email: string().required('Email is required').email('Email must be correct'),
@@ -23,7 +24,8 @@ const schema = object({
     .required('Confirm password is required'),
   profession: string().required('Profession is required'),
   gender: string().required('Gender is required'),
-  qualities: array().required('Qualities is required')
+  qualities: array().required('Qualities is required'),
+  rules: boolean().oneOf([true], 'Is required!')
 }).required()
 
 const RegisterForm = (): ReactElement => {
@@ -50,7 +52,10 @@ const RegisterForm = (): ReactElement => {
     control
   } = useForm<IRegisterFormInputs>({
     mode: 'all',
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    defaultValues: {
+      rules: false
+    }
   })
 
   const onSubmit: SubmitHandler<IRegisterFormInputs> = (data: object): void => {
@@ -115,6 +120,12 @@ const RegisterForm = (): ReactElement => {
             error={error?.message}
           />
         )}
+      />
+      <CheckField
+        label="I agree with rules"
+        id="rules"
+        {...{ register }}
+        error={errors.rules?.message}
       />
       <input
         className="btn btn-success mt-3"

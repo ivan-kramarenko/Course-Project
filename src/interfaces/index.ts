@@ -30,11 +30,15 @@ export interface ISortedValue {
 export interface ILoginFormInputs {
   email: string
   password: string
+  stay?: boolean
 }
 
-export interface IRegisterFormInputs extends ILoginFormInputs {
+export interface IRegisterFormInputs {
+  email: string
+  password: string
   repeatPassword: string
   profession: string
   gender: string
   qualities: IQuality[]
+  rules: boolean
 }

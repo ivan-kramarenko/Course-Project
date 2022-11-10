@@ -5,7 +5,11 @@ interface ErrorFieldProps {
 }
 
 const ErrorField = ({ error }: ErrorFieldProps): ReactElement => (
-  <>{error != null && <div className="mb-2 text-center">{error}</div>}</>
+  <>
+    {error != null && (
+      <div className="mb-2 text-center invalid-feedback">{error}</div>
+    )}
+  </>
 )
 
 export default ErrorField
