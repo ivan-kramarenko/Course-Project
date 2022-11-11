@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { IGuest } from '../interfaces/models'
+import { IGuest } from '../../../interfaces'
 
 interface ButtonDeleteProps {
   guest: IGuest

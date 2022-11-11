@@ -1,15 +1,15 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import API from '../api'
-import QualitiesList from '../components/QualitiesList'
-import { IGuest } from '../interfaces/models'
+import API from '../../api'
+import QualitiesList from '../ui/qualities/QualitiesList'
+import { IGuest } from '../../interfaces'
 
 const GuestPage = (): ReactElement => {
   const { guestId } = useParams()
   const [guest, setGuest] = useState<IGuest>()
   const navigate = useNavigate()
   useEffect(() => {
-    API.users.getById(guestId).then((data) => {
+    void API.users.getById(guestId).then((data) => {
       setGuest(data)
     })
   }, [])

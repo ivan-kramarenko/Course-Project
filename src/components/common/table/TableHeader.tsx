@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { CaretDownFill, CaretUpFill } from 'react-bootstrap-icons'
-import { ISortedValue } from '../interfaces/models'
+import { ISortedValue } from '../../../interfaces'
 
 interface TableHeaderProps {
   onSort: (value: ISortedValue) => void

@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react'
-import { IGuest, ISortedValue } from '../interfaces/models'
-import ButtonBookmark from './ButtonBookmark'
-import ButtonDelete from './ButtonDelete'
-import QualitiesList from './QualitiesList'
-import Table from './Table'
+import { IGuest, ISortedValue } from '../../../interfaces'
+import { ButtonBookmark, ButtonDelete } from '../../common/buttons'
+import QualitiesList from '../qualities'
+import Table from '../../common/table'
 
 interface GuestsTableProps {
   guests: IGuest[]

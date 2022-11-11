@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Bookmark, BookmarkFill } from 'react-bootstrap-icons'
-import { IGuest } from '../interfaces/models'
+import { IGuest } from '../../../interfaces'
 
 interface ButtonBookmarkProps {
   bookmark: boolean

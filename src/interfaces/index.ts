@@ -26,3 +26,12 @@ export interface ISortedValue {
   path: string
   order: string
 }
+
+export interface ILoginFormInputs {
+  email: string
+  password: string
+}
+
+export interface IRegisterFormInputs extends ILoginFormInputs {
+  repeatPassword: string
+}

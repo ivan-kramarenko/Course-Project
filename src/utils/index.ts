@@ -1,4 +1,4 @@
-import { IGuest, IProfession } from '../../interfaces/models'
+import { IGuest, IProfession } from '../interfaces'
 
 export const getFirstAndSecondDigitOfNumber = (num: number): number[] => {
   const splittedNumberArray = num.toString().split('')
@@ -42,4 +42,26 @@ export function filterGuestsByItem(
     return guests
   }
   return guests.filter((guest) => guest.profession._id === filterProfession._id)
+}
+
+export function filterGuestsBySearch(
+  guests: IGuest[],
+  searchQuery: string
+): IGuest[] {
+  if (searchQuery.trim() === '') {
+    return guests
+  }
+  return guests.filter((guest) =>
+    guest.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+}
+
+export function filterGuests(
+  guests: IGuest[],
+  filterProfession: IProfession | undefined,
+  searchQuery: string
+): IGuest[] {
+  const byItem = filterGuestsByItem(guests, filterProfession)
+  const bySearch = filterGuestsBySearch(byItem, searchQuery)
+  return bySearch
 }

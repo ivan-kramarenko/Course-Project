@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { IQuality } from '../interfaces/models'
+import { IQuality } from '../../../interfaces'
 import Quality from './Quality'
 
 interface QualitiesListProps {
