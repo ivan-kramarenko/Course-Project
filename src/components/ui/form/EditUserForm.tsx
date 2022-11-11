@@ -52,17 +52,12 @@ const EditUserForm = (): ReactElement => {
     register,
     formState: { errors, isValid },
     handleSubmit,
-    control
+    control,
+    setValue
   } = useForm<IEditFormInputs>({
     mode: 'onBlur',
-    defaultValues: {
-      email: guestData?.email
-    },
     resolver: yupResolver(schema)
   })
-
-  const getProfession = (selectedProf: string): IProfession | undefined =>
-    professions.find((prof: { name: string }) => prof.name === selectedProf)
 
   const getQualities = (selectedQuals: IFormQualities[]): IQuality[] => {
     const entriesQuals = Object.entries(qualities)
@@ -79,11 +74,25 @@ const EditUserForm = (): ReactElement => {
     return Object.values(Object.fromEntries(result))
   }
 
+  useEffect(() => {
+    if (guestData !== undefined) {
+      setValue('name', guestData.name)
+      setValue('email', guestData.email)
+      setValue('profession', guestData.profession.name)
+      setValue('sex', guestData.sex)
+    }
+  }, [guestData])
+
+  const getProfession = (selectedProf: string): IProfession | undefined =>
+    professions.find((prof: { name: string }) => prof.name === selectedProf)
+
   const onSubmit: SubmitHandler<IEditFormInputs> = (
     data: IEditFormInputs
   ): void => {
     const formattedProf = getProfession(data.profession)
+    console.log(data.qualities)
     const formattedQual = getQualities(data.qualities)
+    console.log(formattedQual)
     const formattedData = {
       ...data,
       profession: formattedProf,
