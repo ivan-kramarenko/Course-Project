@@ -7,6 +7,8 @@ export interface IQuality {
 export interface IGuest {
   _id: string
   name: string
+  email: string
+  sex: string
   profession: {
     _id: string
     name: string
@@ -33,12 +35,25 @@ export interface ILoginFormInputs {
   stay?: boolean
 }
 
+export interface IFormQualities {
+  value: string
+  label: string
+}
+
 export interface IRegisterFormInputs {
   email: string
   password: string
   repeatPassword: string
   profession: string
   gender: string
-  qualities: IQuality[]
+  qualities: IFormQualities[]
   rules: boolean
+}
+
+export interface IEditFormInputs {
+  name: string
+  email: string
+  profession: string
+  sex: string
+  qualities: IFormQualities[]
 }

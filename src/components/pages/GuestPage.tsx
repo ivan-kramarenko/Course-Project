@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import API from '../../api'
 import QualitiesList from '../ui/qualities/QualitiesList'
 import { IGuest } from '../../interfaces'
@@ -7,26 +7,29 @@ import { IGuest } from '../../interfaces'
 const GuestPage = (): ReactElement => {
   const { guestId } = useParams()
   const [guest, setGuest] = useState<IGuest>()
-  const navigate = useNavigate()
   useEffect(() => {
     void API.users.getById(guestId).then((data) => {
       setGuest(data)
     })
   }, [])
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {guest != null && (
-        <>
+        <div className="d-flex flex-column justify-content-center align-items-center mt-5">
           <h1>{guest.name}</h1>
           <h2>Профессия: {guest.profession.name}</h2>
-          <QualitiesList qualities={guest?.qualities} />
+          <p>Пол: {guest.sex}</p>
+          <div className="d-flex">
+            <QualitiesList qualities={guest?.qualities} />
+          </div>
           <p>Completed Meetings: {guest.completedMeetings}</p>
           <p>Rate: {guest.rate} / 5</p>
-          <button type="button" onClick={() => navigate(-1)}>
-            To guests
-          </button>
-        </>
+          <Link to="edit">
+            <button className="btn btn-sm btn-primary" type="button">
+              Edit
+            </button>
+          </Link>
+        </div>
       )}
     </>
   )

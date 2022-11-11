@@ -29,8 +29,8 @@ const schema = object({
 }).required()
 
 const RegisterForm = (): ReactElement => {
-  const [professions, setProfessions] = useState<object | IProfession[]>([])
-  const [qualities, setQualities] = useState<any>({})
+  const [professions, setProfessions] = useState<IProfession[]>([])
+  const [qualities, setQualities] = useState<object>({})
   useEffect(() => {
     void API.professions.fetchAll().then((data) => {
       if (data instanceof Array) {

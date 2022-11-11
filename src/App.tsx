@@ -5,6 +5,7 @@ import GuestPage from './components/pages/GuestPage'
 import GuestsPage from './components/pages/GuestsPage'
 import AuthPage from './components/pages/AuthPage'
 import MainPage from './components/pages/MainPage'
+import EditUserForm from './components/ui/form/EditUserForm'
 
 const App = (): ReactElement => (
   <Routes>
@@ -13,6 +14,7 @@ const App = (): ReactElement => (
       <Route path="login" element={<AuthPage />} />
       <Route path="guests" element={<GuestsPage />} />
       <Route path="guests/:guestId" element={<GuestPage />} />
+      <Route path="guests/:guestId/edit" element={<EditUserForm />} />
     </Route>
   </Routes>
 )
