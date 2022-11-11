@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react'
 import { UseFormRegister } from 'react-hook-form'
+import ErrorField from './ErrorField'
 
 interface TextFieldProps {
   label: string
@@ -15,14 +16,26 @@ const TextField = ({
   type,
   register,
   error
-}: TextFieldProps): ReactElement => (
-  <>
-    <label htmlFor={id}>
-      {label}
-      <input className="form-control" id={id} type={type} {...register(id)} />
-    </label>
-    {error != null && <div className="mb-2 text-center">{error}</div>}
-  </>
-)
+}: TextFieldProps): ReactElement => {
+  const setClassNames = (): string => {
+    const isInvalid = error != null ? 'is-invalid' : ''
+    const classNames = ['form-control', isInvalid]
+    return classNames.join(' ')
+  }
+  return (
+    <>
+      <label htmlFor={id} className="w-100">
+        {label}
+        <input
+          className={setClassNames()}
+          id={id}
+          type={type}
+          {...register(id)}
+        />
+        <ErrorField {...{ error }} />
+      </label>
+    </>
+  )
+}
 
 export default TextField
